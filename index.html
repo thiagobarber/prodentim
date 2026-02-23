@@ -4,9 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bad Breath Quiz</title>
-  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-  <script src="/_sdk/element_sdk.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
   <style>
     * { font-family: 'Poppins', sans-serif; }
     
@@ -43,27 +40,27 @@
     .count-pulse { animation: countPulse 1s ease-in-out infinite; }
     
     .gradient-bg {
-      background: linear-gradient(135deg, #004d35 0%, #007953 50%, #004d35 100%);
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
     }
     
     .glass-card {
-      background: rgba(0, 121, 83, 0.1);
+      background: rgba(255, 255, 255, 0.05);
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(0, 121, 83, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
     
     .progress-bar {
-      background: linear-gradient(90deg, #00b86d, #007953);
+      background: linear-gradient(90deg, #22c55e, #16a34a);
     }
     
     .cta-button {
-      background: linear-gradient(135deg, #007953 0%, #005a3f 100%);
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
       transition: all 0.3s ease;
     }
     
     .cta-button:hover {
       transform: scale(1.05);
-      box-shadow: 0 10px 40px rgba(0, 121, 83, 0.5);
+      box-shadow: 0 10px 40px rgba(239, 68, 68, 0.5);
     }
     
     .option-card {
@@ -80,25 +77,27 @@
     .screen.active { display: flex; }
   </style>
   <style>body { box-sizing: border-box; }</style>
+  <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="/_sdk/element_sdk.js" type="text/javascript"></script>
  </head>
  <body class="h-full gradient-bg text-white overflow-auto"><!-- Landing Screen -->
   <div id="landing" class="screen active flex-col items-center justify-center min-h-full p-6 text-center">
    <div class="max-w-2xl mx-auto fade-in-up"><!-- Urgency Badge -->
-    <div class="inline-flex items-center gap-2 bg-green-500/20 border border-green-500/50 rounded-full px-4 py-2 mb-6"><span class="w-2 h-2 bg-green-500 rounded-full count-pulse"></span> <span class="text-green-400 text-sm font-medium">⚠️ <span id="viewer-count">2,847</span> people taking this quiz right now</span>
+    <div class="inline-flex items-center gap-2 bg-red-500/20 border border-red-500/50 rounded-full px-4 py-2 mb-6"><span class="w-2 h-2 bg-red-500 rounded-full count-pulse"></span> <span class="text-red-400 text-sm font-medium">⚠️ <span id="viewer-count">2,847</span> people taking this quiz right now</span>
     </div><!-- Main Headline -->
-    <h1 id="main-title" class="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">Is Your <span class="text-green-500">Bad Breath</span> Secretly <span class="block text-cyan-400">Destroying Your Life?</span></h1><!-- Subheadline -->
+    <h1 id="main-title" class="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">Is Your <span class="text-red-500">Bad Breath</span> Secretly <span class="block text-yellow-400">Destroying Your Life?</span></h1><!-- Subheadline -->
     <p class="text-xl text-gray-300 mb-6">Take this <span class="text-white font-semibold">30-second quiz</span> to discover the <span class="text-red-400 font-semibold">hidden cause</span> 87% of people don't know about...</p><!-- Pain Points -->
     <div class="glass-card rounded-2xl p-6 mb-8">
      <p class="text-lg text-gray-200 mb-4">Do any of these sound familiar?</p>
      <div class="space-y-3 text-left">
-      <div class="flex items-center gap-3"><span class="text-2xl">😰</span> <span class="text-gray-300">People <span class="text-green-400 font-medium">step back</span> when you talk to them</span>
+      <div class="flex items-center gap-3"><span class="text-2xl">😰</span> <span class="text-gray-300">People <span class="text-red-400 font-medium">step back</span> when you talk to them</span>
       </div>
-      <div class="flex items-center gap-3"><span class="text-2xl">💔</span> <span class="text-gray-300">Your partner <span class="text-green-400 font-medium">avoids kissing</span> you</span>
+      <div class="flex items-center gap-3"><span class="text-2xl">💔</span> <span class="text-gray-300">Your partner <span class="text-red-400 font-medium">avoids kissing</span> you</span>
       </div>
-      <div class="flex items-center gap-3"><span class="text-2xl">🤐</span> <span class="text-gray-300">You're <span class="text-green-400 font-medium">afraid to speak</span> in meetings</span>
+      <div class="flex items-center gap-3"><span class="text-2xl">🤐</span> <span class="text-gray-300">You're <span class="text-red-400 font-medium">afraid to speak</span> in meetings</span>
       </div>
-      <div class="flex items-center gap-3"><span class="text-2xl">😔</span> <span class="text-gray-300">Mints &amp; mouthwash <span class="text-green-400 font-medium">never work</span> for long</span>
+      <div class="flex items-center gap-3"><span class="text-2xl">😔</span> <span class="text-gray-300">Mints &amp; mouthwash <span class="text-red-400 font-medium">never work</span> for long</span>
       </div>
      </div>
     </div><!-- Social Proof -->
@@ -159,21 +158,21 @@
   </div><!-- Results Screen -->
   <div id="results" class="screen flex-col items-center justify-start min-h-full p-6">
    <div class="max-w-2xl w-full mx-auto fade-in-up"><!-- Alert Badge -->
-    <div class="text-center mb-6"><span class="inline-block bg-green-500/20 border border-green-500 text-green-400 px-4 py-2 rounded-full text-sm font-medium"> ⚠️ ATTENTION REQUIRED </span>
+    <div class="text-center mb-6"><span class="inline-block bg-red-500/20 border border-red-500 text-red-400 px-4 py-2 rounded-full text-sm font-medium"> ⚠️ ATTENTION REQUIRED </span>
     </div><!-- Score Card -->
     <div class="glass-card rounded-2xl p-8 text-center mb-6">
      <h2 class="text-xl text-gray-300 mb-2">Your Bad Breath Risk Score:</h2>
-     <div class="text-7xl font-extrabold text-green-500 mb-2">
+     <div class="text-7xl font-extrabold text-red-500 mb-2">
       87%
      </div>
-     <p class="text-green-400 font-semibold text-lg">HIGH RISK DETECTED</p>
+     <p class="text-red-400 font-semibold text-lg">HIGH RISK DETECTED</p>
     </div><!-- Findings -->
     <div class="glass-card rounded-2xl p-6 mb-6">
-     <h3 class="text-xl font-bold mb-4 text-cyan-400">🔬 Your Quiz Revealed:</h3>
+     <h3 class="text-xl font-bold mb-4 text-yellow-400">🔬 Your Quiz Revealed:</h3>
      <ul class="space-y-3">
-      <li class="flex items-start gap-3"><span class="text-green-500 text-xl">❌</span> <span class="text-gray-300">Your bad breath is likely caused by <span class="text-white font-semibold">harmful bacteria imbalance</span> that mouthwash CAN'T fix</span></li>
-      <li class="flex items-start gap-3"><span class="text-green-500 text-xl">❌</span> <span class="text-gray-300">This type of halitosis <span class="text-white font-semibold">gets worse over time</span> if left untreated</span></li>
-      <li class="flex items-start gap-3"><span class="text-green-500 text-xl">❌</span> <span class="text-gray-300">It may be affecting your <span class="text-white font-semibold">gum health &amp; tooth decay risk</span></span></li>
+      <li class="flex items-start gap-3"><span class="text-red-500 text-xl">❌</span> <span class="text-gray-300">Your bad breath is likely caused by <span class="text-white font-semibold">harmful bacteria imbalance</span> that mouthwash CAN'T fix</span></li>
+      <li class="flex items-start gap-3"><span class="text-red-500 text-xl">❌</span> <span class="text-gray-300">This type of halitosis <span class="text-white font-semibold">gets worse over time</span> if left untreated</span></li>
+      <li class="flex items-start gap-3"><span class="text-red-500 text-xl">❌</span> <span class="text-gray-300">It may be affecting your <span class="text-white font-semibold">gum health &amp; tooth decay risk</span></span></li>
      </ul>
     </div><!-- Solution -->
     <div class="bg-gradient-to-br from-green-900/50 to-green-800/30 border border-green-500/30 rounded-2xl p-6 mb-6">
@@ -205,19 +204,6 @@
    </div>
   </div>
   <script>
-    // Default configuration
-    const defaultConfig = {
-      main_title: 'Is Your <span class="text-red-500">Bad Breath</span> Secretly <span class="block text-yellow-400">Destroying Your Life?</span>',
-      cta_button_text: '🔍 Discover My Bad Breath Score',
-      final_cta_text: '👉 See My Personalized Solution Now',
-      background_color: '#0f172a',
-      accent_color: '#ef4444',
-      text_color: '#ffffff',
-      success_color: '#22c55e',
-      surface_color: '#1e293b',
-      font_family: 'Poppins'
-    };
-
     // Quiz questions
     const questions = [
       {
@@ -271,65 +257,6 @@
     let timerMinutes = 14;
     let timerSeconds = 59;
 
-    // Initialize Element SDK
-    window.elementSdk.init({
-      defaultConfig,
-      onConfigChange: async (config) => {
-        const cfg = { ...defaultConfig, ...config };
-        
-        // Update main title
-        document.getElementById('main-title').innerHTML = cfg.main_title;
-        
-        // Update CTA buttons
-        document.getElementById('start-btn').innerHTML = cfg.cta_button_text;
-        document.getElementById('final-cta').innerHTML = cfg.final_cta_text;
-        
-        // Apply font
-        document.body.style.fontFamily = `${cfg.font_family}, Poppins, sans-serif`;
-      },
-      mapToCapabilities: (config) => {
-        const cfg = { ...defaultConfig, ...config };
-        return {
-          recolorables: [
-            {
-              get: () => cfg.background_color,
-              set: (value) => window.elementSdk.setConfig({ background_color: value })
-            },
-            {
-              get: () => cfg.surface_color,
-              set: (value) => window.elementSdk.setConfig({ surface_color: value })
-            },
-            {
-              get: () => cfg.text_color,
-              set: (value) => window.elementSdk.setConfig({ text_color: value })
-            },
-            {
-              get: () => cfg.accent_color,
-              set: (value) => window.elementSdk.setConfig({ accent_color: value })
-            },
-            {
-              get: () => cfg.success_color,
-              set: (value) => window.elementSdk.setConfig({ success_color: value })
-            }
-          ],
-          borderables: [],
-          fontEditable: {
-            get: () => cfg.font_family,
-            set: (value) => window.elementSdk.setConfig({ font_family: value })
-          },
-          fontSizeable: undefined
-        };
-      },
-      mapToEditPanelValues: (config) => {
-        const cfg = { ...defaultConfig, ...config };
-        return new Map([
-          ['main_title', cfg.main_title.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim()],
-          ['cta_button_text', cfg.cta_button_text],
-          ['final_cta_text', cfg.final_cta_text]
-        ]);
-      }
-    });
-
     // Timer functionality
     function updateTimer() {
       if (timerSeconds === 0) {
@@ -345,8 +272,10 @@
       }
       
       const timeString = `${timerMinutes}:${timerSeconds.toString().padStart(2, '0')}`;
-      document.getElementById('timer').textContent = timeString;
-      document.getElementById('results-timer').textContent = timeString;
+      const timerEl = document.getElementById('timer');
+      const resultsTimerEl = document.getElementById('results-timer');
+      if (timerEl) timerEl.textContent = timeString;
+      if (resultsTimerEl) resultsTimerEl.textContent = timeString;
     }
     
     setInterval(updateTimer, 1000);
@@ -355,7 +284,8 @@
     function updateViewerCount() {
       const base = 2847;
       const variation = Math.floor(Math.random() * 50) - 25;
-      document.getElementById('viewer-count').textContent = (base + variation).toLocaleString();
+      const el = document.getElementById('viewer-count');
+      if (el) el.textContent = (base + variation).toLocaleString();
     }
     
     setInterval(updateViewerCount, 3000);
@@ -363,33 +293,47 @@
     // Screen navigation
     function showScreen(screenId) {
       document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-      document.getElementById(screenId).classList.add('active');
+      const screen = document.getElementById(screenId);
+      if (screen) screen.classList.add('active');
     }
 
     // Render question
     function renderQuestion() {
+      if (currentQuestion >= questions.length) return;
+      
       const q = questions[currentQuestion];
-      document.getElementById('question-text').textContent = q.question;
-      document.getElementById('current-q').textContent = currentQuestion + 1;
-      document.getElementById('total-q').textContent = questions.length;
+      const qText = document.getElementById('question-text');
+      const currentQEl = document.getElementById('current-q');
+      const totalQEl = document.getElementById('total-q');
+      const progressFill = document.getElementById('progress-fill');
+      const progressPercent = document.getElementById('progress-percent');
+      const container = document.getElementById('options-container');
+
+      if (qText) qText.textContent = q.question;
+      if (currentQEl) currentQEl.textContent = currentQuestion + 1;
+      if (totalQEl) totalQEl.textContent = questions.length;
       
       const progress = ((currentQuestion) / questions.length) * 100;
-      document.getElementById('progress-fill').style.width = `${progress}%`;
-      document.getElementById('progress-percent').textContent = `${Math.round(progress)}%`;
+      if (progressFill) progressFill.style.width = `${progress}%`;
+      if (progressPercent) progressPercent.textContent = `${Math.round(progress)}%`;
       
-      const container = document.getElementById('options-container');
-      container.innerHTML = '';
-      
-      q.options.forEach((opt, idx) => {
-        const btn = document.createElement('button');
-        btn.className = 'option-card w-full glass-card rounded-xl p-4 text-left flex items-center gap-4 border border-transparent hover:border-red-500';
-        btn.innerHTML = `
-          <span class="text-3xl">${opt.emoji}</span>
-          <span class="text-gray-200">${opt.text}</span>
-        `;
-        btn.addEventListener('click', () => handleAnswer(idx));
-        container.appendChild(btn);
-      });
+      if (container) {
+        container.innerHTML = '';
+        q.options.forEach((opt, idx) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'option-card w-full glass-card rounded-xl p-4 text-left flex items-center gap-4 border border-transparent hover:border-red-500';
+          btn.innerHTML = `
+            <span class="text-3xl">${opt.emoji}</span>
+            <span class="text-gray-200">${opt.text}</span>
+          `;
+          btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            handleAnswer(idx);
+          });
+          container.appendChild(btn);
+        });
+      }
     }
 
     // Handle answer
@@ -400,9 +344,11 @@
         showAnalyzing();
       } else {
         const container = document.getElementById('question-container');
-        container.classList.remove('fade-in-up');
-        void container.offsetWidth;
-        container.classList.add('fade-in-up');
+        if (container) {
+          container.classList.remove('fade-in-up');
+          void container.offsetWidth;
+          container.classList.add('fade-in-up');
+        }
         renderQuestion();
       }
     }
@@ -421,8 +367,10 @@
       
       checks.forEach((check, idx) => {
         setTimeout(() => {
-          document.getElementById(check).className = 'text-green-500';
-          document.getElementById('analyze-text').textContent = texts[idx];
+          const el = document.getElementById(check);
+          if (el) el.className = 'text-green-500';
+          const analyzeText = document.getElementById('analyze-text');
+          if (analyzeText) analyzeText.textContent = texts[idx];
         }, (idx + 1) * 1000);
       });
       
@@ -431,11 +379,18 @@
       }, 5000);
     }
 
-    // Start quiz
-    document.getElementById('start-btn').addEventListener('click', () => {
-      showScreen('quiz');
-      renderQuestion();
+    // Start quiz button
+    document.addEventListener('DOMContentLoaded', function() {
+      const startBtn = document.getElementById('start-btn');
+      if (startBtn) {
+        startBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          currentQuestion = 0;
+          showScreen('quiz');
+          renderQuestion();
+        });
+      }
     });
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d29086734a832a9',t:'MTc3MTg3MzkyNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d29107ee40b32a9',t:'MTc3MTg3NDI1Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
