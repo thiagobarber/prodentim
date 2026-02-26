@@ -3,394 +3,380 @@
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bad Breath Quiz</title>
+  <meta name="description" content="Discover the root cause of bad breath with our interactive quiz. Personalized solution revealed in 30 seconds.">
+  <meta name="theme-color" content="#007953">
+  <title>Bad Breath Quiz - Free Assessment</title><!-- External Dependencies -->
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&amp;display=swap" rel="stylesheet"><!-- Styles -->
   <style>
-    * { font-family: 'Poppins', sans-serif; }
-    
+    * {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Animations */
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(0, 121, 83, 0.4); }
+      50% { box-shadow: 0 0 40px rgba(0, 121, 83, 0.8); }
+    }
+
     @keyframes float {
-      0%, 100% { transform: translateY(0px); }
+      0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-10px); }
     }
-    
-    @keyframes pulse-glow {
-      0%, 100% { box-shadow: 0 0 20px rgba(239, 68, 68, 0.4); }
-      50% { box-shadow: 0 0 40px rgba(239, 68, 68, 0.8); }
-    }
-    
+
     @keyframes shake {
       0%, 100% { transform: translateX(0); }
       25% { transform: translateX(-5px); }
       75% { transform: translateX(5px); }
     }
-    
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    
-    @keyframes countPulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
+
+    @keyframes urgentPulse {
+      0%, 100% { color: #dc2626; }
+      50% { color: #991b1b; }
     }
-    
-    .float-animation { animation: float 3s ease-in-out infinite; }
-    .pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
-    .shake-animation { animation: shake 0.5s ease-in-out; }
-    .fade-in-up { animation: fadeInUp 0.6s ease-out forwards; }
-    .count-pulse { animation: countPulse 1s ease-in-out infinite; }
-    
-    .gradient-bg {
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+
+    /* Utility Classes */
+    .pulse-btn {
+      animation: pulse-glow 2s infinite;
     }
-    
-    .glass-card {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+
+    .float-icon {
+      animation: float 3s ease-in-out infinite;
     }
-    
+
+    .shake {
+      animation: shake 0.5s ease-in-out;
+    }
+
     .progress-bar {
-      background: linear-gradient(90deg, #22c55e, #16a34a);
+      transition: width 0.5s ease-out;
     }
-    
-    .cta-button {
-      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-      transition: all 0.3s ease;
-    }
-    
-    .cta-button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 10px 40px rgba(239, 68, 68, 0.5);
-    }
-    
+
     .option-card {
       transition: all 0.3s ease;
     }
-    
+
     .option-card:hover {
-      transform: translateY(-3px);
-      border-color: #ef4444;
-      box-shadow: 0 10px 30px rgba(239, 68, 68, 0.2);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0, 121, 83, 0.2);
     }
-    
-    .screen { display: none; }
-    .screen.active { display: flex; }
+
+    .fade-in {
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    .countdown-urgent {
+      animation: urgentPulse 1s infinite;
+    }
+
+    body {
+      box-sizing: border-box;
+    }
   </style>
-  <style>body { box-sizing: border-box; }</style>
-  <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
-  <script src="/_sdk/element_sdk.js" type="text/javascript"></script>
  </head>
- <body class="h-full gradient-bg text-white overflow-auto"><!-- Landing Screen -->
-  <div id="landing" class="screen active flex-col items-center justify-center min-h-full p-6 text-center">
-   <div class="max-w-2xl mx-auto fade-in-up"><!-- Urgency Badge -->
-    <div class="inline-flex items-center gap-2 bg-red-500/20 border border-red-500/50 rounded-full px-4 py-2 mb-6"><span class="w-2 h-2 bg-red-500 rounded-full count-pulse"></span> <span class="text-red-400 text-sm font-medium">⚠️ <span id="viewer-count">2,847</span> people taking this quiz right now</span>
-    </div><!-- Main Headline -->
-    <h1 id="main-title" class="text-4xl md:text-5xl font-extrabold mb-4 leading-tight">Is Your <span class="text-red-500">Bad Breath</span> Secretly <span class="block text-yellow-400">Destroying Your Life?</span></h1><!-- Subheadline -->
-    <p class="text-xl text-gray-300 mb-6">Take this <span class="text-white font-semibold">30-second quiz</span> to discover the <span class="text-red-400 font-semibold">hidden cause</span> 87% of people don't know about...</p><!-- Pain Points -->
-    <div class="glass-card rounded-2xl p-6 mb-8">
-     <p class="text-lg text-gray-200 mb-4">Do any of these sound familiar?</p>
-     <div class="space-y-3 text-left">
-      <div class="flex items-center gap-3"><span class="text-2xl">😰</span> <span class="text-gray-300">People <span class="text-red-400 font-medium">step back</span> when you talk to them</span>
+ <body class="h-full bg-gradient-to-br from-[#007953] via-[#008f62] to-[#76A686] overflow-auto">
+  <div id="app" class="w-full min-h-full flex items-center justify-center p-4">
+   <!-- Landing Page Section -->
+   <div id="landing" class="max-w-lg w-full text-center fade-in">
+    <!-- Urgency Banner -->
+    <div class="bg-red-600 text-white py-2 px-4 rounded-full mb-6 inline-block">
+     <span class="text-sm font-semibold">⚡ Limited Time: Free Assessment</span>
+    </div><!-- Main Card -->
+    <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-10">
+     <!-- Icon -->
+     <div class="float-icon text-6xl mb-4">
+      😰
+     </div><!-- Pain Point Title -->
+     <h1 id="main-title" class="text-2xl md:text-3xl font-extrabold text-gray-800 mb-3 leading-tight">Is <span class="text-[#007953]">Bad Breath</span> Secretly Ruining Your Life?</h1><!-- Subtitle with urgency -->
+     <p id="subtitle" class="text-gray-600 mb-6 text-base md:text-lg">Take this <strong>30-second quiz</strong> to discover why mouthwash &amp; brushing aren't working...</p><!-- Pain Points -->
+     <div class="bg-gray-50 rounded-2xl p-5 mb-6 text-left">
+      <p class="font-semibold text-gray-700 mb-3">Do you experience:</p>
+      <ul class="space-y-2">
+       <li class="flex items-center text-gray-600"><span class="text-red-500 mr-2">✗</span> People stepping back when you talk?</li>
+       <li class="flex items-center text-gray-600"><span class="text-red-500 mr-2">✗</span> Constant anxiety about your breath?</li>
+       <li class="flex items-center text-gray-600"><span class="text-red-500 mr-2">✗</span> Bad taste even after brushing?</li>
+      </ul>
+     </div><!-- Social Proof -->
+     <div class="flex items-center justify-center gap-2 mb-6">
+      <div class="flex -space-x-2">
+       <div class="w-8 h-8 bg-[#76A686] rounded-full flex items-center justify-center text-white text-xs font-bold">
+        J
+       </div>
+       <div class="w-8 h-8 bg-[#007953] rounded-full flex items-center justify-center text-white text-xs font-bold">
+        M
+       </div>
+       <div class="w-8 h-8 bg-[#76A686] rounded-full flex items-center justify-center text-white text-xs font-bold">
+        S
+       </div>
       </div>
-      <div class="flex items-center gap-3"><span class="text-2xl">💔</span> <span class="text-gray-300">Your partner <span class="text-red-400 font-medium">avoids kissing</span> you</span>
+      <p class="text-sm text-gray-500"><strong>47,892</strong> people took this quiz today</p>
+     </div><!-- CTA Button --> <button id="start-btn" class="pulse-btn w-full bg-[#007953] hover:bg-[#006644] text-white font-bold py-4 px-8 rounded-full text-lg transition-all transform hover:scale-105"> 🔍 Discover My Solution </button>
+     <p class="text-xs text-gray-400 mt-4">Takes only 30 seconds • 100% Free • Science-backed</p>
+    </div>
+   </div><!-- Quiz Section -->
+   <div id="quiz" class="max-w-lg w-full hidden">
+    <div class="bg-white rounded-3xl shadow-2xl p-8 fade-in">
+     <!-- Progress -->
+     <div class="mb-6">
+      <div class="flex justify-between text-sm text-gray-500 mb-2">
+       <span>Question <span id="current-q">1</span> of 3</span> <span id="progress-text">33%</span>
       </div>
-      <div class="flex items-center gap-3"><span class="text-2xl">🤐</span> <span class="text-gray-300">You're <span class="text-red-400 font-medium">afraid to speak</span> in meetings</span>
+      <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+       <div id="progress-bar" class="progress-bar h-full bg-gradient-to-r from-[#007953] to-[#76A686] rounded-full" style="width: 33%"></div>
       </div>
-      <div class="flex items-center gap-3"><span class="text-2xl">😔</span> <span class="text-gray-300">Mints &amp; mouthwash <span class="text-red-400 font-medium">never work</span> for long</span>
-      </div>
+     </div><!-- Question -->
+     <h2 id="question" class="text-xl md:text-2xl font-bold text-gray-800 mb-6 text-center"></h2><!-- Options -->
+     <div id="options" class="space-y-3"></div>
+    </div>
+   </div><!-- Results Section -->
+   <div id="results" class="max-w-lg w-full hidden">
+    <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-10 fade-in text-center">
+     <!-- Success Icon -->
+     <div class="text-6xl mb-4">
+      🎯
+     </div><!-- Main Message -->
+     <h2 class="text-2xl md:text-3xl font-extrabold text-gray-800 mb-4">Great News! We Found Your <span class="text-[#007953]">Solution</span></h2>
+     <p class="text-gray-600 mb-6">Based on your answers, <strong>your bad breath is likely caused by harmful bacteria</strong> hiding deep in your gums — where brushing can't reach.</p><!-- Solution Box -->
+     <div class="bg-gradient-to-r from-[#007953] to-[#76A686] rounded-2xl p-6 text-white mb-6">
+      <p class="font-bold text-lg mb-2">✨ Your Personalized Solution:</p>
+      <p class="text-sm opacity-90">A breakthrough probiotic formula that targets the ROOT CAUSE of bad breath by repopulating your mouth with beneficial bacteria.</p>
+     </div><!-- Urgency Countdown -->
+     <div class="bg-red-50 border border-red-200 rounded-xl p-4 mb-6">
+      <p class="text-red-600 font-semibold countdown-urgent">⏰ Special Offer Expires in <span id="countdown">14:59</span></p>
+      <p class="text-sm text-gray-600 mt-1">Claim your exclusive discount now!</p>
+     </div><!-- Benefits -->
+     <div class="text-left mb-6">
+      <p class="font-semibold text-gray-700 mb-3">What you'll get:</p>
+      <ul class="space-y-2">
+       <li class="flex items-center text-gray-600"><span class="text-[#007953] mr-2 text-lg">✓</span> Fresh breath that lasts ALL day</li>
+       <li class="flex items-center text-gray-600"><span class="text-[#007953] mr-2 text-lg">✓</span> Confidence in close conversations</li>
+       <li class="flex items-center text-gray-600"><span class="text-[#007953] mr-2 text-lg">✓</span> Healthier gums &amp; teeth naturally</li>
+      </ul>
+     </div><!-- CTA Link --> <a href="https://prodentim24.com/text.php?aff=thiagobarber" target="_blank" rel="noopener noreferrer" class="pulse-btn block w-full bg-[#007953] hover:bg-[#006644] text-white font-bold py-4 px-8 rounded-full text-lg transition-all transform hover:scale-105 text-center"> 🛡️ Get My Fresh Breath Solution → </a> <!-- Trust Badges -->
+     <div class="flex justify-center gap-4 mt-6 text-sm text-gray-500">
+      <span>✓ 60-Day Guarantee</span> <span>✓ Free Shipping</span>
      </div>
-    </div><!-- Social Proof -->
-    <div class="flex items-center justify-center gap-2 mb-6">
-     <div class="flex -space-x-2">
-      <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-sm font-bold border-2 border-slate-800">
-       JM
-      </div>
-      <div class="w-10 h-10 rounded-full bg-gradient-to-br from-pink-400 to-pink-600 flex items-center justify-center text-sm font-bold border-2 border-slate-800">
-       SK
-      </div>
-      <div class="w-10 h-10 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center text-sm font-bold border-2 border-slate-800">
-       AR
-      </div>
-      <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center text-sm font-bold border-2 border-slate-800">
-       TW
-      </div>
-     </div><span class="text-gray-400 text-sm">Join <span class="text-green-400 font-semibold">157,000+</span> who found their solution</span>
-    </div><!-- CTA Button --> <button id="start-btn" class="cta-button pulse-glow text-white font-bold text-xl px-12 py-5 rounded-full"> 🔍 Discover My Bad Breath Score </button>
-    <p class="text-gray-500 text-sm mt-4">Free • Takes only 30 seconds • 100% Private</p><!-- Urgency Timer -->
-    <div class="mt-6 glass-card rounded-xl p-4 inline-block">
-     <p class="text-yellow-400 text-sm font-medium">⏰ Special Solution Available For:</p>
-     <p id="timer" class="text-2xl font-bold text-white">14:59</p>
+     <p class="text-xs text-gray-400 mt-4">Join 1.5M+ happy customers worldwide</p>
     </div>
    </div>
-  </div><!-- Quiz Screen -->
-  <div id="quiz" class="screen flex-col items-center justify-center min-h-full p-6">
-   <div class="max-w-2xl w-full mx-auto"><!-- Progress Bar -->
-    <div class="mb-8">
-     <div class="flex justify-between text-sm text-gray-400 mb-2"><span>Question <span id="current-q">1</span> of <span id="total-q">5</span></span> <span id="progress-percent">0%</span>
-     </div>
-     <div class="h-3 bg-gray-700 rounded-full overflow-hidden">
-      <div id="progress-fill" class="h-full progress-bar rounded-full transition-all duration-500" style="width: 0%"></div>
-     </div>
-    </div><!-- Question Container -->
-    <div id="question-container" class="glass-card rounded-2xl p-8 fade-in-up">
-     <h2 id="question-text" class="text-2xl font-bold mb-6 text-center"></h2>
-     <div id="options-container" class="space-y-4"></div>
-    </div>
-   </div>
-  </div><!-- Analyzing Screen -->
-  <div id="analyzing" class="screen flex-col items-center justify-center min-h-full p-6 text-center">
-   <div class="max-w-lg mx-auto fade-in-up">
-    <div class="w-24 h-24 border-4 border-red-500 border-t-transparent rounded-full animate-spin mx-auto mb-6"></div>
-    <h2 class="text-2xl font-bold mb-4">Analyzing Your Responses...</h2>
-    <p id="analyze-text" class="text-gray-400">Calculating your bad breath risk score...</p>
-    <div class="mt-6 space-y-2">
-     <div class="flex items-center gap-3 text-left"><span id="check1" class="text-gray-600">✓</span> <span class="text-gray-400">Analyzing oral bacteria indicators</span>
-     </div>
-     <div class="flex items-center gap-3 text-left"><span id="check2" class="text-gray-600">✓</span> <span class="text-gray-400">Checking gut-mouth connection</span>
-     </div>
-     <div class="flex items-center gap-3 text-left"><span id="check3" class="text-gray-600">✓</span> <span class="text-gray-400">Identifying root cause pattern</span>
-     </div>
-     <div class="flex items-center gap-3 text-left"><span id="check4" class="text-gray-600">✓</span> <span class="text-gray-400">Preparing your personalized solution</span>
-     </div>
-    </div>
-   </div>
-  </div><!-- Results Screen -->
-  <div id="results" class="screen flex-col items-center justify-start min-h-full p-6">
-   <div class="max-w-2xl w-full mx-auto fade-in-up"><!-- Alert Badge -->
-    <div class="text-center mb-6"><span class="inline-block bg-red-500/20 border border-red-500 text-red-400 px-4 py-2 rounded-full text-sm font-medium"> ⚠️ ATTENTION REQUIRED </span>
-    </div><!-- Score Card -->
-    <div class="glass-card rounded-2xl p-8 text-center mb-6">
-     <h2 class="text-xl text-gray-300 mb-2">Your Bad Breath Risk Score:</h2>
-     <div class="text-7xl font-extrabold text-red-500 mb-2">
-      87%
-     </div>
-     <p class="text-red-400 font-semibold text-lg">HIGH RISK DETECTED</p>
-    </div><!-- Findings -->
-    <div class="glass-card rounded-2xl p-6 mb-6">
-     <h3 class="text-xl font-bold mb-4 text-yellow-400">🔬 Your Quiz Revealed:</h3>
-     <ul class="space-y-3">
-      <li class="flex items-start gap-3"><span class="text-red-500 text-xl">❌</span> <span class="text-gray-300">Your bad breath is likely caused by <span class="text-white font-semibold">harmful bacteria imbalance</span> that mouthwash CAN'T fix</span></li>
-      <li class="flex items-start gap-3"><span class="text-red-500 text-xl">❌</span> <span class="text-gray-300">This type of halitosis <span class="text-white font-semibold">gets worse over time</span> if left untreated</span></li>
-      <li class="flex items-start gap-3"><span class="text-red-500 text-xl">❌</span> <span class="text-gray-300">It may be affecting your <span class="text-white font-semibold">gum health &amp; tooth decay risk</span></span></li>
-     </ul>
-    </div><!-- Solution -->
-    <div class="bg-gradient-to-br from-green-900/50 to-green-800/30 border border-green-500/30 rounded-2xl p-6 mb-6">
-     <h3 class="text-xl font-bold mb-4 text-green-400">✅ The Good News:</h3>
-     <p class="text-gray-300 mb-4">A breakthrough <span class="text-white font-semibold">probiotic formula</span> has been clinically shown to <span class="text-green-400 font-semibold">eliminate the root cause</span> of bad breath by repopulating your mouth with beneficial bacteria.</p>
-     <p class="text-gray-300"><span class="text-white font-semibold">Over 157,000 people</span> have already transformed their oral health and confidence with this solution.</p>
-    </div><!-- Testimonial -->
-    <div class="glass-card rounded-2xl p-6 mb-6">
-     <div class="flex items-center gap-4 mb-4">
-      <div class="w-14 h-14 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-lg font-bold">
-       SM
-      </div>
-      <div>
-       <p class="font-semibold">Sarah M.</p>
-       <p class="text-yellow-400 text-sm">⭐⭐⭐⭐⭐ Verified Buyer</p>
-      </div>
-     </div>
-     <p class="text-gray-300 italic">"After years of embarrassment, I finally feel confident talking to people up close. My husband noticed the difference in just 2 weeks. I wish I found this sooner!"</p>
-    </div><!-- Urgency -->
-    <div class="text-center mb-6">
-     <p class="text-yellow-400 font-medium mb-2">⚠️ Due to high demand, limited stock available</p>
-     <p class="text-gray-400 text-sm">This special offer expires when the timer hits zero</p>
-     <p id="results-timer" class="text-3xl font-bold text-white mt-2">14:59</p>
-    </div><!-- Final CTA --> <a href="https://prodentim24.com/text.php?aff=thiagobarber" target="_blank" rel="noopener noreferrer" class="block w-full"> <button id="final-cta" class="cta-button pulse-glow w-full text-white font-bold text-xl py-5 rounded-full"> 👉 See My Personalized Solution Now </button> </a>
-    <p class="text-center text-gray-500 text-sm mt-4">🔒 Secure checkout • 60-day money back guarantee</p><!-- Final Push -->
-    <div class="glass-card rounded-xl p-4 mt-6 text-center">
-     <p class="text-gray-300 text-sm"><span class="text-red-400 font-semibold">Warning:</span> Ignoring bad breath doesn't make it go away. <span class="text-white">Take action today</span> before it affects more relationships and opportunities.</p>
-    </div>
-   </div>
-  </div>
+  </div><!-- Main Application Script -->
   <script>
-    // Quiz questions
+    // Configuration
+    const defaultConfig = {
+      main_title: 'Is <span class="text-[#007953]">Bad Breath</span> Secretly Ruining Your Life?',
+      subtitle: 'Take this <strong>30-second quiz</strong> to discover why mouthwash & brushing aren\'t working...',
+      button_text: '🔍 Discover My Solution',
+      primary_color: '#007953',
+      secondary_color: '#76A686',
+      background_color: '#007953',
+      text_color: '#1f2937',
+      accent_color: '#dc2626',
+      font_family: 'Poppins'
+    };
+
+    // Quiz Questions Data
     const questions = [
       {
-        question: "How often do people seem to step back or turn away when you're talking to them?",
+        question: "How long have you been struggling with bad breath?",
         options: [
-          { text: "Very often - it happens almost daily", emoji: "😰" },
-          { text: "Sometimes - I've noticed it a few times", emoji: "😟" },
-          { text: "Rarely - but I'm always worried about it", emoji: "😕" },
-          { text: "I'm not sure, but I have my suspicions", emoji: "🤔" }
+          { text: "Less than 6 months", emoji: "📅" },
+          { text: "6 months to 2 years", emoji: "📆" },
+          { text: "More than 2 years", emoji: "😫" },
+          { text: "I'm not sure", emoji: "🤔" }
         ]
       },
       {
-        question: "How long does your breath stay fresh after brushing your teeth?",
+        question: "What have you already tried?",
         options: [
-          { text: "Less than 1 hour", emoji: "⏰" },
-          { text: "1-2 hours", emoji: "🕐" },
-          { text: "2-4 hours", emoji: "🕑" },
-          { text: "It never really feels fresh", emoji: "😫" }
+          { text: "Mouthwash & mints", emoji: "🍬" },
+          { text: "Better brushing habits", emoji: "🪥" },
+          { text: "Visited a dentist", emoji: "🦷" },
+          { text: "Everything, nothing works!", emoji: "😩" }
         ]
       },
       {
-        question: "Have mints, gum, or mouthwash been able to solve your bad breath?",
+        question: "What bothers you MOST about bad breath?",
         options: [
-          { text: "No - they only mask it for minutes", emoji: "❌" },
-          { text: "Temporarily - but it always comes back", emoji: "🔄" },
-          { text: "I've tried everything with no real success", emoji: "😞" },
-          { text: "I've given up on finding a solution", emoji: "🏳️" }
-        ]
-      },
-      {
-        question: "Has bad breath affected your confidence or relationships?",
-        options: [
-          { text: "Yes - I avoid close conversations", emoji: "🚫" },
-          { text: "Yes - it's hurt my romantic relationship", emoji: "💔" },
-          { text: "Yes - I'm anxious in social situations", emoji: "😰" },
-          { text: "All of the above", emoji: "😢" }
-        ]
-      },
-      {
-        question: "How important is it to you to permanently fix your bad breath?",
-        options: [
-          { text: "Extremely - it's affecting my quality of life", emoji: "🔥" },
-          { text: "Very - I want my confidence back", emoji: "💪" },
-          { text: "Important - I'm ready for a real solution", emoji: "✅" },
-          { text: "I'll do whatever it takes", emoji: "🎯" }
+          { text: "Fear of talking to people", emoji: "😰" },
+          { text: "Impact on relationships", emoji: "💔" },
+          { text: "Feeling embarrassed", emoji: "😳" },
+          { text: "All of the above", emoji: "😭" }
         ]
       }
     ];
 
+    // State
     let currentQuestion = 0;
-    let timerMinutes = 14;
-    let timerSeconds = 59;
+    let countdownInterval = null;
 
-    // Timer functionality
-    function updateTimer() {
-      if (timerSeconds === 0) {
-        if (timerMinutes === 0) {
-          timerMinutes = 14;
-          timerSeconds = 59;
-        } else {
-          timerMinutes--;
-          timerSeconds = 59;
-        }
-      } else {
-        timerSeconds--;
-      }
-      
-      const timeString = `${timerMinutes}:${timerSeconds.toString().padStart(2, '0')}`;
-      const timerEl = document.getElementById('timer');
-      const resultsTimerEl = document.getElementById('results-timer');
-      if (timerEl) timerEl.textContent = timeString;
-      if (resultsTimerEl) resultsTimerEl.textContent = timeString;
-    }
-    
-    setInterval(updateTimer, 1000);
-
-    // Viewer count animation
-    function updateViewerCount() {
-      const base = 2847;
-      const variation = Math.floor(Math.random() * 50) - 25;
-      const el = document.getElementById('viewer-count');
-      if (el) el.textContent = (base + variation).toLocaleString();
-    }
-    
-    setInterval(updateViewerCount, 3000);
-
-    // Screen navigation
-    function showScreen(screenId) {
-      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-      const screen = document.getElementById(screenId);
-      if (screen) screen.classList.add('active');
+    // Event Handlers
+    function startQuiz() {
+      document.getElementById('landing').classList.add('hidden');
+      document.getElementById('quiz').classList.remove('hidden');
+      showQuestion();
     }
 
-    // Render question
-    function renderQuestion() {
-      if (currentQuestion >= questions.length) return;
-      
+    function showQuestion() {
       const q = questions[currentQuestion];
-      const qText = document.getElementById('question-text');
-      const currentQEl = document.getElementById('current-q');
-      const totalQEl = document.getElementById('total-q');
-      const progressFill = document.getElementById('progress-fill');
-      const progressPercent = document.getElementById('progress-percent');
-      const container = document.getElementById('options-container');
+      document.getElementById('question').textContent = q.question;
+      document.getElementById('current-q').textContent = currentQuestion + 1;
 
-      if (qText) qText.textContent = q.question;
-      if (currentQEl) currentQEl.textContent = currentQuestion + 1;
-      if (totalQEl) totalQEl.textContent = questions.length;
-      
-      const progress = ((currentQuestion) / questions.length) * 100;
-      if (progressFill) progressFill.style.width = `${progress}%`;
-      if (progressPercent) progressPercent.textContent = `${Math.round(progress)}%`;
-      
-      if (container) {
-        container.innerHTML = '';
-        q.options.forEach((opt, idx) => {
-          const btn = document.createElement('button');
-          btn.type = 'button';
-          btn.className = 'option-card w-full glass-card rounded-xl p-4 text-left flex items-center gap-4 border border-transparent hover:border-red-500';
-          btn.innerHTML = `
-            <span class="text-3xl">${opt.emoji}</span>
-            <span class="text-gray-200">${opt.text}</span>
-          `;
-          btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            handleAnswer(idx);
-          });
-          container.appendChild(btn);
-        });
-      }
-    }
+      const progress = ((currentQuestion + 1) / 3) * 100;
+      document.getElementById('progress-bar').style.width = progress + '%';
+      document.getElementById('progress-text').textContent = Math.round(progress) + '%';
 
-    // Handle answer
-    function handleAnswer(answerIdx) {
-      currentQuestion++;
-      
-      if (currentQuestion >= questions.length) {
-        showAnalyzing();
-      } else {
-        const container = document.getElementById('question-container');
-        if (container) {
-          container.classList.remove('fade-in-up');
-          void container.offsetWidth;
-          container.classList.add('fade-in-up');
-        }
-        renderQuestion();
-      }
-    }
+      const optionsContainer = document.getElementById('options');
+      optionsContainer.innerHTML = '';
 
-    // Show analyzing screen
-    function showAnalyzing() {
-      showScreen('analyzing');
-      
-      const checks = ['check1', 'check2', 'check3', 'check4'];
-      const texts = [
-        'Calculating your bad breath risk score...',
-        'Analyzing bacterial patterns...',
-        'Identifying root causes...',
-        'Preparing your results...'
-      ];
-      
-      checks.forEach((check, idx) => {
-        setTimeout(() => {
-          const el = document.getElementById(check);
-          if (el) el.className = 'text-green-500';
-          const analyzeText = document.getElementById('analyze-text');
-          if (analyzeText) analyzeText.textContent = texts[idx];
-        }, (idx + 1) * 1000);
+      q.options.forEach((opt, index) => {
+        const btn = document.createElement('button');
+        btn.className = 'option-card w-full bg-gray-50 hover:bg-[#007953] hover:text-white border-2 border-gray-200 hover:border-[#007953] rounded-xl p-4 text-left flex items-center gap-3 transition-all';
+        btn.innerHTML = `
+          <span class="text-2xl">${opt.emoji}</span>
+          <span class="font-semibold">${opt.text}</span>
+        `;
+        btn.onclick = () => selectAnswer(index);
+        optionsContainer.appendChild(btn);
       });
-      
-      setTimeout(() => {
-        showScreen('results');
-      }, 5000);
     }
 
-    // Start quiz button
+    function selectAnswer(index) {
+      const options = document.querySelectorAll('.option-card');
+      options[index].classList.add('shake');
+
+      setTimeout(() => {
+        currentQuestion++;
+        if (currentQuestion < 3) {
+          const quizCard = document.getElementById('quiz').querySelector('.bg-white');
+          quizCard.classList.remove('fade-in');
+          void quizCard.offsetWidth; // Trigger reflow
+          quizCard.classList.add('fade-in');
+          showQuestion();
+        } else {
+          showResults();
+        }
+      }, 300);
+    }
+
+    function showResults() {
+      document.getElementById('quiz').classList.add('hidden');
+      document.getElementById('results').classList.remove('hidden');
+      startCountdown();
+    }
+
+    function startCountdown() {
+      let time = 15 * 60; // 15 minutes in seconds
+      const countdownEl = document.getElementById('countdown');
+
+      countdownInterval = setInterval(() => {
+        const minutes = Math.floor(time / 60);
+        const seconds = time % 60;
+        countdownEl.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+
+        if (time <= 0) {
+          clearInterval(countdownInterval);
+        }
+        time--;
+      }, 1000);
+    }
+
+    // Element SDK Configuration
+    async function onConfigChange(config) {
+      const mainTitle = document.getElementById('main-title');
+      const subtitle = document.getElementById('subtitle');
+      const startBtn = document.getElementById('start-btn');
+
+      if (mainTitle) mainTitle.innerHTML = config.main_title || defaultConfig.main_title;
+      if (subtitle) subtitle.innerHTML = config.subtitle || defaultConfig.subtitle;
+      if (startBtn) startBtn.innerHTML = config.button_text || defaultConfig.button_text;
+
+      const customFont = config.font_family || defaultConfig.font_family;
+      document.body.style.fontFamily = `${customFont}, sans-serif`;
+    }
+
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          {
+            get: () => config.background_color || defaultConfig.background_color,
+            set: (value) => {
+              config.background_color = value;
+              window.elementSdk.setConfig({ background_color: value });
+            }
+          },
+          {
+            get: () => config.secondary_color || defaultConfig.secondary_color,
+            set: (value) => {
+              config.secondary_color = value;
+              window.elementSdk.setConfig({ secondary_color: value });
+            }
+          },
+          {
+            get: () => config.text_color || defaultConfig.text_color,
+            set: (value) => {
+              config.text_color = value;
+              window.elementSdk.setConfig({ text_color: value });
+            }
+          },
+          {
+            get: () => config.primary_color || defaultConfig.primary_color,
+            set: (value) => {
+              config.primary_color = value;
+              window.elementSdk.setConfig({ primary_color: value });
+            }
+          },
+          {
+            get: () => config.accent_color || defaultConfig.accent_color,
+            set: (value) => {
+              config.accent_color = value;
+              window.elementSdk.setConfig({ accent_color: value });
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => config.font_family || defaultConfig.font_family,
+          set: (value) => {
+            config.font_family = value;
+            window.elementSdk.setConfig({ font_family: value });
+          }
+        },
+        fontSizeable: undefined
+      };
+    }
+
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ["main_title", config.main_title || defaultConfig.main_title],
+        ["subtitle", config.subtitle || defaultConfig.subtitle],
+        ["button_text", config.button_text || defaultConfig.button_text]
+      ]);
+    }
+
+    // Initialize SDK when available
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+
+    // Add event listener when DOM is ready
     document.addEventListener('DOMContentLoaded', function() {
       const startBtn = document.getElementById('start-btn');
       if (startBtn) {
-        startBtn.addEventListener('click', (e) => {
-          e.preventDefault();
-          currentQuestion = 0;
-          showScreen('quiz');
-          renderQuestion();
-        });
+        startBtn.addEventListener('click', startQuiz);
       }
     });
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d29107ee40b32a9',t:'MTc3MTg3NDI1Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d41c43590287d48',t:'MTc3MjEzMzI3Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
