@@ -1,382 +1,549 @@
 <!doctype html>
-<html lang="en" class="h-full">
+<html lang="en-US" class="h-full">
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Discover the root cause of bad breath with our interactive quiz. Personalized solution revealed in 30 seconds.">
-  <meta name="theme-color" content="#007953">
-  <title>Bad Breath Quiz - Free Assessment</title><!-- External Dependencies -->
-  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <title>ProDentim - Natural Support for Healthy Teeth and Gums</title>
   <script src="/_sdk/element_sdk.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&amp;display=swap" rel="stylesheet"><!-- Styles -->
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
   <style>
-    * {
-      font-family: 'Poppins', sans-serif;
+    html, body { height: 100%; width: 100%; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      overflow-x: hidden;
     }
-
-    /* Animations */
-    @keyframes pulse-glow {
-      0%, 100% { box-shadow: 0 0 20px rgba(0, 121, 83, 0.4); }
-      50% { box-shadow: 0 0 40px rgba(0, 121, 83, 0.8); }
+    .main-font { font-family: 'Poppins', sans-serif; font-weight: 800; }
+    .bold-font { font-family: 'Poppins', sans-serif; font-weight: 900; }
+    
+    .cta-pulse {
+      animation: pulse-red 2s infinite;
     }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+    @keyframes pulse-red {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); }
+      50% { box-shadow: 0 0 0 12px rgba(220, 38, 38, 0); }
     }
-
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-5px); }
-      75% { transform: translateX(5px); }
+    
+    .fade-in-up {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.8s ease-out forwards;
     }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
+    @keyframes fadeInUp {
       to { opacity: 1; transform: translateY(0); }
     }
-
-    @keyframes urgentPulse {
-      0%, 100% { color: #dc2626; }
-      50% { color: #991b1b; }
+    
+    .float-animation {
+      animation: float 4s ease-in-out infinite;
     }
-
-    /* Utility Classes */
-    .pulse-btn {
-      animation: pulse-glow 2s infinite;
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-15px); }
     }
-
-    .float-icon {
-      animation: float 3s ease-in-out infinite;
+    
+    .stagger-1 { animation-delay: 0.1s; }
+    .stagger-2 { animation-delay: 0.3s; }
+    .stagger-3 { animation-delay: 0.5s; }
+    .stagger-4 { animation-delay: 0.7s; }
+    
+    .star-glow {
+      filter: drop-shadow(0 0 3px rgba(255, 193, 7, 0.6));
     }
-
-    .shake {
-      animation: shake 0.5s ease-in-out;
+    
+    .gradient-text {
+      background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
-
-    .progress-bar {
-      transition: width 0.5s ease-out;
-    }
-
-    .option-card {
+    
+    .benefit-card {
       transition: all 0.3s ease;
     }
-
-    .option-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 30px rgba(0, 121, 83, 0.2);
+    .benefit-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 121, 83, 0.15);
     }
-
-    .fade-in {
-      animation: fadeIn 0.5s ease-out;
+    
+    .testimonial-card {
+      transition: all 0.3s ease;
     }
-
-    .countdown-urgent {
-      animation: urgentPulse 1s infinite;
+    .testimonial-card:hover {
+      transform: translateY(-3px);
     }
-
-    body {
-      box-sizing: border-box;
+    
+    .shine-effect {
+      position: relative;
+      overflow: hidden;
+    }
+    .shine-effect::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      animation: shine 3s infinite;
+    }
+    @keyframes shine {
+      0% { left: -100%; }
+      50%, 100% { left: 100%; }
+    }
+    
+    .decorative-leaf {
+      position: absolute;
+      opacity: 0.15;
+      pointer-events: none;
+    }
+    
+    .scroll-indicator {
+      animation: bounce-soft 2s infinite;
+    }
+    @keyframes bounce-soft {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(10px); }
+    }
+    
+    .product-glow {
+      filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.2));
+    }
+    
+    @media (max-width: 768px) {
+      .hero-title-mobile { font-size: 2rem !important; line-height: 1.1 !important; }
     }
   </style>
+  <style>body { box-sizing: border-box; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
  </head>
- <body class="h-full bg-gradient-to-br from-[#007953] via-[#008f62] to-[#76A686] overflow-auto">
-  <div id="app" class="w-full min-h-full flex items-center justify-center p-4">
-   <!-- Landing Page Section -->
-   <div id="landing" class="max-w-lg w-full text-center fade-in">
-    <!-- Urgency Banner -->
-    <div class="bg-red-600 text-white py-2 px-4 rounded-full mb-6 inline-block">
-     <span class="text-sm font-semibold">⚡ Limited Time: Free Assessment</span>
-    </div><!-- Main Card -->
-    <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-10">
-     <!-- Icon -->
-     <div class="float-icon text-6xl mb-4">
-      😰
-     </div><!-- Pain Point Title -->
-     <h1 id="main-title" class="text-2xl md:text-3xl font-extrabold text-gray-800 mb-3 leading-tight">Is <span class="text-[#007953]">Bad Breath</span> Secretly Ruining Your Life?</h1><!-- Subtitle with urgency -->
-     <p id="subtitle" class="text-gray-600 mb-6 text-base md:text-lg">Take this <strong>30-second quiz</strong> to discover why mouthwash &amp; brushing aren't working...</p><!-- Pain Points -->
-     <div class="bg-gray-50 rounded-2xl p-5 mb-6 text-left">
-      <p class="font-semibold text-gray-700 mb-3">Do you experience:</p>
-      <ul class="space-y-2">
-       <li class="flex items-center text-gray-600"><span class="text-red-500 mr-2">✗</span> People stepping back when you talk?</li>
-       <li class="flex items-center text-gray-600"><span class="text-red-500 mr-2">✗</span> Constant anxiety about your breath?</li>
-       <li class="flex items-center text-gray-600"><span class="text-red-500 mr-2">✗</span> Bad taste even after brushing?</li>
-      </ul>
-     </div><!-- Social Proof -->
-     <div class="flex items-center justify-center gap-2 mb-6">
-      <div class="flex -space-x-2">
-       <div class="w-8 h-8 bg-[#76A686] rounded-full flex items-center justify-center text-white text-xs font-bold">
-        J
-       </div>
-       <div class="w-8 h-8 bg-[#007953] rounded-full flex items-center justify-center text-white text-xs font-bold">
-        M
-       </div>
-       <div class="w-8 h-8 bg-[#76A686] rounded-full flex items-center justify-center text-white text-xs font-bold">
-        S
-       </div>
-      </div>
-      <p class="text-sm text-gray-500"><strong>47,892</strong> people took this quiz today</p>
-     </div><!-- CTA Button --> <button id="start-btn" class="pulse-btn w-full bg-[#007953] hover:bg-[#006644] text-white font-bold py-4 px-8 rounded-full text-lg transition-all transform hover:scale-105"> 🔍 Discover My Solution </button>
-     <p class="text-xs text-gray-400 mt-4">Takes only 30 seconds • 100% Free • Science-backed</p>
+ <body class="h-full w-full">
+  <div class="h-full w-full overflow-auto">
+   <!-- Header -->
+   <header id="main-header" class="w-full sticky top-0 z-50 shadow-md" style="background-color: #007953;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+     <div class="flex items-center gap-2"><span id="brand-name-display" class="main-font text-white text-xl sm:text-2xl tracking-tight">ProDentim</span>
+     </div><a id="header-cta" href="https://prodentim24.com/text.php#aff=thiagobarber" target="_blank" rel="noopener noreferrer" class="bg-red-600 hover:bg-red-700 text-white font-bold px-4 sm:px-6 py-2 sm:py-3 rounded-full shine-effect text-sm sm:text-base transition-all transform hover:scale-105 shadow-lg"> <span class="flex items-center gap-2"> <i data-lucide="shopping-cart" style="width: 16px; height: 16px;"></i> <span id="header-cta-text">Order Now</span> </span> </a>
     </div>
-   </div><!-- Quiz Section -->
-   <div id="quiz" class="max-w-lg w-full hidden">
-    <div class="bg-white rounded-3xl shadow-2xl p-8 fade-in">
-     <!-- Progress -->
-     <div class="mb-6">
-      <div class="flex justify-between text-sm text-gray-500 mb-2">
-       <span>Question <span id="current-q">1</span> of 3</span> <span id="progress-text">33%</span>
-      </div>
-      <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
-       <div id="progress-bar" class="progress-bar h-full bg-gradient-to-r from-[#007953] to-[#76A686] rounded-full" style="width: 33%"></div>
-      </div>
-     </div><!-- Question -->
-     <h2 id="question" class="text-xl md:text-2xl font-bold text-gray-800 mb-6 text-center"></h2><!-- Options -->
-     <div id="options" class="space-y-3"></div>
+   </header><!-- Hero Section -->
+   <section id="hero-section" class="w-full relative overflow-hidden" style="background-color: #76A686;">
+    <!-- Decorative elements -->
+    <div class="decorative-leaf" style="top: 10%; left: 5%;">
+     <i data-lucide="leaf" style="width: 80px; height: 80px; color: white;"></i>
     </div>
-   </div><!-- Results Section -->
-   <div id="results" class="max-w-lg w-full hidden">
-    <div class="bg-white rounded-3xl shadow-2xl p-8 md:p-10 fade-in text-center">
-     <!-- Success Icon -->
-     <div class="text-6xl mb-4">
-      🎯
-     </div><!-- Main Message -->
-     <h2 class="text-2xl md:text-3xl font-extrabold text-gray-800 mb-4">Great News! We Found Your <span class="text-[#007953]">Solution</span></h2>
-     <p class="text-gray-600 mb-6">Based on your answers, <strong>your bad breath is likely caused by harmful bacteria</strong> hiding deep in your gums — where brushing can't reach.</p><!-- Solution Box -->
-     <div class="bg-gradient-to-r from-[#007953] to-[#76A686] rounded-2xl p-6 text-white mb-6">
-      <p class="font-bold text-lg mb-2">✨ Your Personalized Solution:</p>
-      <p class="text-sm opacity-90">A breakthrough probiotic formula that targets the ROOT CAUSE of bad breath by repopulating your mouth with beneficial bacteria.</p>
-     </div><!-- Urgency Countdown -->
-     <div class="bg-red-50 border border-red-200 rounded-xl p-4 mb-6">
-      <p class="text-red-600 font-semibold countdown-urgent">⏰ Special Offer Expires in <span id="countdown">14:59</span></p>
-      <p class="text-sm text-gray-600 mt-1">Claim your exclusive discount now!</p>
-     </div><!-- Benefits -->
-     <div class="text-left mb-6">
-      <p class="font-semibold text-gray-700 mb-3">What you'll get:</p>
-      <ul class="space-y-2">
-       <li class="flex items-center text-gray-600"><span class="text-[#007953] mr-2 text-lg">✓</span> Fresh breath that lasts ALL day</li>
-       <li class="flex items-center text-gray-600"><span class="text-[#007953] mr-2 text-lg">✓</span> Confidence in close conversations</li>
-       <li class="flex items-center text-gray-600"><span class="text-[#007953] mr-2 text-lg">✓</span> Healthier gums &amp; teeth naturally</li>
-      </ul>
-     </div><!-- CTA Link --> <a href="https://prodentim24.com/text.php?aff=thiagobarber" target="_blank" rel="noopener noreferrer" class="pulse-btn block w-full bg-[#007953] hover:bg-[#006644] text-white font-bold py-4 px-8 rounded-full text-lg transition-all transform hover:scale-105 text-center"> 🛡️ Get My Fresh Breath Solution → </a> <!-- Trust Badges -->
-     <div class="flex justify-center gap-4 mt-6 text-sm text-gray-500">
-      <span>✓ 60-Day Guarantee</span> <span>✓ Free Shipping</span>
+    <div class="decorative-leaf" style="bottom: 15%; right: 8%;">
+     <i data-lucide="leaf" style="width: 100px; height: 100px; color: white; transform: rotate(45deg);"></i>
+    </div>
+    <div class="decorative-leaf" style="top: 50%; right: 20%;">
+     <i data-lucide="sparkles" style="width: 60px; height: 60px; color: white;"></i>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 relative z-10">
+     <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      <div class="text-white fade-in-up stagger-1">
+       <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
+        <i data-lucide="shield-check" style="width: 16px; height: 16px; color: #FFD700;"></i> <span class="text-sm font-semibold">100% Natural Formula</span>
+       </div>
+       <h1 id="hero-title" class="bold-font hero-title-mobile text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-tight mb-6" style="font-family: 'Poppins', sans-serif; font-weight: 900;">Say Goodbye to Bad Breath and Reclaim Your Healthy Teeth and Gums</h1>
+       <p id="hero-subtitle" class="text-lg sm:text-xl mb-8 text-white/95 leading-relaxed">A natural approach designed to support your oral health, with probiotics that promote a healthier, more confident smile every single day.</p>
+       <div class="flex flex-col sm:flex-row gap-4 mb-8">
+        <a href="https://prodentim24.com/text.php#aff=thiagobarber" target="_blank" rel="noopener noreferrer" class="cta-pulse bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-4 rounded-full text-lg inline-flex items-center justify-center gap-3 transition-all transform hover:scale-105 shadow-xl"> <i data-lucide="shopping-cart" style="width: 20px; height: 20px;"></i> <span>Learn More Now</span> <i data-lucide="arrow-right" style="width: 20px; height: 20px;"></i> </a>
+       </div>
+       <div class="flex items-center gap-4 text-white/90">
+        <div class="flex -space-x-2">
+         <div class="w-10 h-10 rounded-full bg-yellow-400 border-2 border-white flex items-center justify-center">
+          <i data-lucide="user" style="width: 18px; height: 18px; color: #76A686;"></i>
+         </div>
+         <div class="w-10 h-10 rounded-full bg-orange-400 border-2 border-white flex items-center justify-center">
+          <i data-lucide="user" style="width: 18px; height: 18px; color: #76A686;"></i>
+         </div>
+         <div class="w-10 h-10 rounded-full bg-pink-400 border-2 border-white flex items-center justify-center">
+          <i data-lucide="user" style="width: 18px; height: 18px; color: #76A686;"></i>
+         </div>
+        </div>
+        <div>
+         <div class="flex items-center gap-1">
+          <i data-lucide="star" class="star-glow" style="width: 16px; height: 16px; color: #FFD700; fill: #FFD700;"></i> <i data-lucide="star" class="star-glow" style="width: 16px; height: 16px; color: #FFD700; fill: #FFD700;"></i> <i data-lucide="star" class="star-glow" style="width: 16px; height: 16px; color: #FFD700; fill: #FFD700;"></i> <i data-lucide="star" class="star-glow" style="width: 16px; height: 16px; color: #FFD700; fill: #FFD700;"></i> <i data-lucide="star" class="star-glow" style="width: 16px; height: 16px; color: #FFD700; fill: #FFD700;"></i>
+         </div>
+         <p class="text-sm mt-1">Thousands of positive reviews</p>
+        </div>
+       </div>
+      </div>
+      <div class="flex justify-center lg:justify-end fade-in-up stagger-2">
+       <div class="relative">
+        <div class="absolute inset-0 bg-white/10 rounded-full blur-3xl"></div>
+        <div class="float-animation relative">
+         <img src="https://i.imgur.com/93S0oVz.png" alt="ProDentim - Natural Support for Healthy Oral Health" loading="lazy" class="product-glow max-w-xs sm:max-w-sm lg:max-w-md w-full h-auto" onerror="console.error('Image failed to load:', this.src); this.style.background='#ffffff'; this.style.padding='40px'; this.style.borderRadius='20px'; this.alt='ProDentim';">
+        </div>
+        <div class="absolute -top-4 -right-4 bg-yellow-400 text-gray-900 font-bold px-4 py-2 rounded-full shadow-lg transform rotate-12 text-sm">
+         <div class="flex items-center gap-1">
+          <i data-lucide="zap" style="width: 14px; height: 14px;"></i> <span>Natural</span>
+         </div>
+        </div>
+       </div>
+      </div>
      </div>
-     <p class="text-xs text-gray-400 mt-4">Join 1.5M+ happy customers worldwide</p>
+     <div class="flex justify-center mt-12 scroll-indicator">
+      <i data-lucide="chevron-down" style="width: 32px; height: 32px; color: white;"></i>
+     </div>
     </div>
-   </div>
-  </div><!-- Main Application Script -->
+   </section><!-- Problem Section -->
+   <section class="w-full py-16 sm:py-20 bg-gray-50">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="text-center mb-12">
+      <h2 class="main-font text-3xl sm:text-4xl lg:text-5xl mb-4" style="color: #007953;">Do Any of These Sound Familiar?</h2>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">Many people struggle with their oral health every day. Check if this happens to you:</p>
+     </div>
+     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="bg-white p-6 rounded-2xl shadow-md benefit-card border-l-4" style="border-color: #76A686;">
+       <div class="w-12 h-12 rounded-full flex items-center justify-center mb-4" style="background-color: rgba(118, 166, 134, 0.15);">
+        <i data-lucide="wind" style="width: 24px; height: 24px; color: #007953;"></i>
+       </div>
+       <h3 class="font-bold text-lg mb-2 text-gray-900">Persistent Bad Breath</h3>
+       <p class="text-gray-600">Feel self-conscious talking to others because of bad breath concerns?</p>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow-md benefit-card border-l-4" style="border-color: #76A686;">
+       <div class="w-12 h-12 rounded-full flex items-center justify-center mb-4" style="background-color: rgba(118, 166, 134, 0.15);">
+        <i data-lucide="droplet" style="width: 24px; height: 24px; color: #007953;"></i>
+       </div>
+       <h3 class="font-bold text-lg mb-2 text-gray-900">Sensitive Gums</h3>
+       <p class="text-gray-600">Notice inflamed or bleeding gums when you brush?</p>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow-md benefit-card border-l-4" style="border-color: #76A686;">
+       <div class="w-12 h-12 rounded-full flex items-center justify-center mb-4" style="background-color: rgba(118, 166, 134, 0.15);">
+        <i data-lucide="smile" style="width: 24px; height: 24px; color: #007953;"></i>
+       </div>
+       <h3 class="font-bold text-lg mb-2 text-gray-900">Low Confidence</h3>
+       <p class="text-gray-600">Avoid smiling in photos or public because you're insecure about your teeth?</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Benefits Section -->
+   <section id="benefits-section" class="w-full py-16 sm:py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="text-center mb-12">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-4" style="background-color: rgba(0, 121, 83, 0.1);">
+       <i data-lucide="leaf" style="width: 16px; height: 16px; color: #007953;"></i> <span class="text-sm font-semibold" style="color: #007953;">Natural Formula</span>
+      </div>
+      <h2 id="benefits-title" class="main-font text-3xl sm:text-4xl lg:text-5xl mb-4" style="color: #007953;">Why ProDentim is Different</h2>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">Developed with natural ingredients to support your oral health from the inside out</p>
+     </div>
+     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="benefit-card p-6 rounded-2xl text-center" style="background-color: #f0f9f4;">
+       <div class="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4" style="background-color: #007953;">
+        <i data-lucide="sparkles" style="width: 28px; height: 28px; color: white;"></i>
+       </div>
+       <h3 class="font-bold text-xl mb-2 text-gray-900">Fresher Breath</h3>
+       <p class="text-gray-600">Supports fresh breath naturally</p>
+      </div>
+      <div class="benefit-card p-6 rounded-2xl text-center" style="background-color: #f0f9f4;">
+       <div class="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4" style="background-color: #007953;">
+        <i data-lucide="shield" style="width: 28px; height: 28px; color: white;"></i>
+       </div>
+       <h3 class="font-bold text-xl mb-2 text-gray-900">Healthy Gums</h3>
+       <p class="text-gray-600">Contributes to gum wellness</p>
+      </div>
+      <div class="benefit-card p-6 rounded-2xl text-center" style="background-color: #f0f9f4;">
+       <div class="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4" style="background-color: #007953;">
+        <i data-lucide="smile" style="width: 28px; height: 28px; color: white;"></i>
+       </div>
+       <h3 class="font-bold text-xl mb-2 text-gray-900">Confident Smile</h3>
+       <p class="text-gray-600">Helps you smile with more confidence</p>
+      </div>
+      <div class="benefit-card p-6 rounded-2xl text-center" style="background-color: #f0f9f4;">
+       <div class="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4" style="background-color: #007953;">
+        <i data-lucide="heart" style="width: 28px; height: 28px; color: white;"></i>
+       </div>
+       <h3 class="font-bold text-xl mb-2 text-gray-900">Oral Wellness</h3>
+       <p class="text-gray-600">Promotes a healthy oral microbiome</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Ingredients Highlight -->
+   <section class="w-full py-16 sm:py-20" style="background: linear-gradient(135deg, #76A686 0%, #007953 100%);">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="grid lg:grid-cols-2 gap-10 items-center">
+      <div class="text-white">
+       <h2 class="main-font text-3xl sm:text-4xl lg:text-5xl mb-6">Hand-Selected Natural Ingredients</h2>
+       <p class="text-lg mb-6 text-white/95">ProDentim was developed with a unique combination of probiotics and natural ingredients, designed to support oral health.</p>
+       <div class="space-y-4">
+        <div class="flex items-start gap-3">
+         <div class="w-8 h-8 rounded-full bg-white/20 flex-shrink-0 flex items-center justify-center mt-1">
+          <i data-lucide="check" style="width: 18px; height: 18px; color: white;"></i>
+         </div>
+         <div>
+          <h4 class="font-bold text-lg">Specialized Probiotics</h4>
+          <p class="text-white/90">Carefully selected strains for oral health</p>
+         </div>
+        </div>
+        <div class="flex items-start gap-3">
+         <div class="w-8 h-8 rounded-full bg-white/20 flex-shrink-0 flex items-center justify-center mt-1">
+          <i data-lucide="check" style="width: 18px; height: 18px; color: white;"></i>
+         </div>
+         <div>
+          <h4 class="font-bold text-lg">Natural Ingredients</h4>
+          <p class="text-white/90">Premium quality botanical components</p>
+         </div>
+        </div>
+        <div class="flex items-start gap-3">
+         <div class="w-8 h-8 rounded-full bg-white/20 flex-shrink-0 flex items-center justify-center mt-1">
+          <i data-lucide="check" style="width: 18px; height: 18px; color: white;"></i>
+         </div>
+         <div>
+          <h4 class="font-bold text-lg">Stimulant-Free</h4>
+          <p class="text-white/90">Carefully crafted formula</p>
+         </div>
+        </div>
+        <div class="flex items-start gap-3">
+         <div class="w-8 h-8 rounded-full bg-white/20 flex-shrink-0 flex items-center justify-center mt-1">
+          <i data-lucide="check" style="width: 18px; height: 18px; color: white;"></i>
+         </div>
+         <div>
+          <h4 class="font-bold text-lg">Easy to Use</h4>
+          <p class="text-white/90">Simple to integrate into your daily routine</p>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="flex justify-center">
+       <div class="relative float-animation">
+        <div class="absolute inset-0 bg-white/10 rounded-full blur-3xl"></div><img src="https://i.imgur.com/93S0oVz.png" alt="ProDentim" loading="lazy" class="product-glow max-w-xs sm:max-w-sm w-full h-auto relative" onerror="console.error('Image failed to load:', this.src); this.style.background='#ffffff'; this.style.padding='40px'; this.style.borderRadius='20px'; this.alt='ProDentim';">
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Social Proof -->
+   <section class="w-full py-16 sm:py-20 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="text-center mb-12">
+      <h2 class="main-font text-3xl sm:text-4xl lg:text-5xl mb-4" style="color: #007953;">What People Are Saying</h2>
+      <div class="flex items-center justify-center gap-2 mb-2">
+       <i data-lucide="star" class="star-glow" style="width: 24px; height: 24px; color: #FFD700; fill: #FFD700;"></i> <i data-lucide="star" class="star-glow" style="width: 24px; height: 24px; color: #FFD700; fill: #FFD700;"></i> <i data-lucide="star" class="star-glow" style="width: 24px; height: 24px; color: #FFD700; fill: #FFD700;"></i> <i data-lucide="star" class="star-glow" style="width: 24px; height: 24px; color: #FFD700; fill: #FFD700;"></i> <i data-lucide="star" class="star-glow" style="width: 24px; height: 24px; color: #FFD700; fill: #FFD700;"></i>
+      </div>
+      <p class="text-lg text-gray-600">Reviews from satisfied customers</p>
+     </div>
+     <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-white p-6 rounded-2xl shadow-md testimonial-card">
+       <div class="flex items-center gap-1 mb-3">
+        <i data-lucide="star" style="width: 16px; height: 16px; color: #FFD700; fill: #FFD700;"></i> <i data-lucide="star" style="width: 16px; height: 16px; color: #FFD700; fill: #FFD700;"></i> <i data-lucide="star" style="width: 16px; height: 16px; color: #FFD700; fill: #FFD700;"></i> <i data-lucide="star" style="width: 16px; height: 16px; color: #FFD700; fill: #FFD700;"></i> <i data-lucide="star" style="width: 16px; height: 16px; color: #FFD700; fill: #FFD700;"></i>
+       </div>
+       <p class="text-gray-700 mb-4 italic">"I'm very satisfied with this product. I feel more confident when I smile and talk with people."</p>
+       <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background-color: rgba(0, 121, 83, 0.15);">
+         <i data-lucide="user" style="width: 20px; height: 20px; color: #007953;"></i>
+        </div>
+        <div>
+         <p class="font-bold text-gray-900">Maria S.</p>
+         <p class="text-sm text-gray-500">Verified Customer</p>
+        </div>
+       </div>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow-md testimonial-card">
+       <div class="flex items-center gap-1 mb-3">
+        <i data-lucide="star" style="width: 16px; height: 16px; color: #FFD700; fill: #FFD700;"></i> <i data-lucide="star" style="width: 16px; height: 16px; color: #FFD700; fill: #FFD700;"></i> <i data-lucide="star" style="width: 16px; height: 16px; color: #FFD700; fill: #FFD700;"></i> <i data-lucide="star" style="width: 16px; height: 16px; color: #FFD700; fill: #FFD700;"></i> <i data-lucide="star" style="width: 16px; height: 16px; color: #FFD700; fill: #FFD700;"></i>
+       </div>
+       <p class="text-gray-700 mb-4 italic">"Quality product and easy to use daily. I recommend it to anyone looking to care for their oral health."</p>
+       <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background-color: rgba(0, 121, 83, 0.15);">
+         <i data-lucide="user" style="width: 20px; height: 20px; color: #007953;"></i>
+        </div>
+        <div>
+         <p class="font-bold text-gray-900">John P.</p>
+         <p class="text-sm text-gray-500">Verified Customer</p>
+        </div>
+       </div>
+      </div>
+      <div class="bg-white p-6 rounded-2xl shadow-md testimonial-card">
+       <div class="flex items-center gap-1 mb-3">
+        <i data-lucide="star" style="width: 16px; height: 16px; color: #FFD700; fill: #FFD700;"></i> <i data-lucide="star" style="width: 16px; height: 16px; color: #FFD700; fill: #FFD700;"></i> <i data-lucide="star" style="width: 16px; height: 16px; color: #FFD700; fill: #FFD700;"></i> <i data-lucide="star" style="width: 16px; height: 16px; color: #FFD700; fill: #FFD700;"></i> <i data-lucide="star" style="width: 16px; height: 16px; color: #FFD700; fill: #FFD700;"></i>
+       </div>
+       <p class="text-gray-700 mb-4 italic">"Really liked the results. I'm more eager to smile and take better care of my oral health."</p>
+       <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background-color: rgba(0, 121, 83, 0.15);">
+         <i data-lucide="user" style="width: 20px; height: 20px; color: #007953;"></i>
+        </div>
+        <div>
+         <p class="font-bold text-gray-900">Ana L.</p>
+         <p class="text-sm text-gray-500">Verified Customer</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Trust Badges -->
+   <section class="w-full py-12 bg-white border-t border-b border-gray-100">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div class="text-center">
+       <div class="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-3" style="background-color: rgba(0, 121, 83, 0.1);">
+        <i data-lucide="leaf" style="width: 28px; height: 28px; color: #007953;"></i>
+       </div>
+       <p class="font-bold text-gray-900">100% Natural</p>
+      </div>
+      <div class="text-center">
+       <div class="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-3" style="background-color: rgba(0, 121, 83, 0.1);">
+        <i data-lucide="shield-check" style="width: 28px; height: 28px; color: #007953;"></i>
+       </div>
+       <p class="font-bold text-gray-900">Quality Tested</p>
+      </div>
+      <div class="text-center">
+       <div class="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-3" style="background-color: rgba(0, 121, 83, 0.1);">
+        <i data-lucide="award" style="width: 28px; height: 28px; color: #007953;"></i>
+       </div>
+       <p class="font-bold text-gray-900">Premium Quality</p>
+      </div>
+      <div class="text-center">
+       <div class="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-3" style="background-color: rgba(0, 121, 83, 0.1);">
+        <i data-lucide="truck" style="width: 28px; height: 28px; color: #007953;"></i>
+       </div>
+       <p class="font-bold text-gray-900">Fast Shipping</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Final CTA -->
+   <section id="final-cta-section" class="w-full py-16 sm:py-20 relative overflow-hidden" style="background-color: #007953;">
+    <div class="decorative-leaf" style="top: 10%; left: 5%;">
+     <i data-lucide="sparkles" style="width: 100px; height: 100px; color: white;"></i>
+    </div>
+    <div class="decorative-leaf" style="bottom: 10%; right: 5%;">
+     <i data-lucide="leaf" style="width: 120px; height: 120px; color: white;"></i>
+    </div>
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+     <h2 id="final-cta-title" class="main-font text-3xl sm:text-4xl lg:text-5xl text-white mb-6">Ready to Transform Your Oral Health?</h2>
+     <p class="text-lg sm:text-xl text-white/95 mb-8 max-w-2xl mx-auto">Discover on the next page all the details about ProDentim and the special conditions available for you today.</p><a href="https://prodentim24.com/text.php#aff=thiagobarber" target="_blank" rel="noopener noreferrer" class="cta-pulse bg-red-600 hover:bg-red-700 text-white font-bold px-10 py-5 rounded-full text-xl inline-flex items-center justify-center gap-3 transition-all transform hover:scale-105 shadow-2xl"> <i data-lucide="shopping-cart" style="width: 24px; height: 24px;"></i> <span id="final-cta-button-text">Get ProDentim Now</span> <i data-lucide="arrow-right" style="width: 24px; height: 24px;"></i> </a>
+     <div class="mt-8 flex flex-wrap items-center justify-center gap-6 text-white/90">
+      <div class="flex items-center gap-2">
+       <i data-lucide="lock" style="width: 18px; height: 18px;"></i> <span class="text-sm">Secure Purchase</span>
+      </div>
+      <div class="flex items-center gap-2">
+       <i data-lucide="truck" style="width: 18px; height: 18px;"></i> <span class="text-sm">Fast Shipping</span>
+      </div>
+      <div class="flex items-center gap-2">
+       <i data-lucide="shield-check" style="width: 18px; height: 18px;"></i> <span class="text-sm">Satisfaction Guaranteed</span>
+      </div>
+     </div>
+    </div>
+   </section><!-- Footer -->
+   <footer class="w-full bg-gray-900 text-gray-400 py-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+     <div class="flex items-center justify-center gap-2 mb-4">
+      <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center">
+       <i data-lucide="sparkles" style="color: #007953; width: 18px; height: 18px;"></i>
+      </div><span class="main-font text-white text-xl">ProDentim</span>
+     </div>
+     <p class="text-sm mb-4 max-w-2xl mx-auto">The statements presented on this page have not been evaluated by health authorities. This product is not intended to diagnose, treat, cure, or prevent any disease. Results may vary from person to person. Always consult a healthcare professional before using any supplement.</p>
+     <p class="text-xs">© 2024 ProDentim. All rights reserved.</p>
+    </div>
+   </footer>
+  </div>
   <script>
-    // Configuration
+    // Initialize Lucide icons
+    lucide.createIcons();
+
     const defaultConfig = {
-      main_title: 'Is <span class="text-[#007953]">Bad Breath</span> Secretly Ruining Your Life?',
-      subtitle: 'Take this <strong>30-second quiz</strong> to discover why mouthwash & brushing aren\'t working...',
-      button_text: '🔍 Discover My Solution',
-      primary_color: '#007953',
-      secondary_color: '#76A686',
-      background_color: '#007953',
-      text_color: '#1f2937',
-      accent_color: '#dc2626',
-      font_family: 'Poppins'
+      brand_name: "ProDentim",
+      cta_button_text: "Order Now",
+      hero_title: "Say Goodbye to Bad Breath and Reclaim Your Healthy Teeth and Gums",
+      hero_subtitle: "A natural approach designed to support your oral health, with probiotics that promote a healthier, more confident smile every single day.",
+      benefits_title: "Why ProDentim is Different",
+      final_cta_title: "Ready to Transform Your Oral Health?",
+      final_cta_button: "Get ProDentim Now",
+      header_bg_color: "#007953",
+      hero_bg_color: "#76A686",
+      cta_color: "#DC2626",
+      font_family: "Poppins",
+      font_size: 16
     };
 
-    // Quiz Questions Data
-    const questions = [
-      {
-        question: "How long have you been struggling with bad breath?",
-        options: [
-          { text: "Less than 6 months", emoji: "📅" },
-          { text: "6 months to 2 years", emoji: "📆" },
-          { text: "More than 2 years", emoji: "😫" },
-          { text: "I'm not sure", emoji: "🤔" }
-        ]
-      },
-      {
-        question: "What have you already tried?",
-        options: [
-          { text: "Mouthwash & mints", emoji: "🍬" },
-          { text: "Better brushing habits", emoji: "🪥" },
-          { text: "Visited a dentist", emoji: "🦷" },
-          { text: "Everything, nothing works!", emoji: "😩" }
-        ]
-      },
-      {
-        question: "What bothers you MOST about bad breath?",
-        options: [
-          { text: "Fear of talking to people", emoji: "😰" },
-          { text: "Impact on relationships", emoji: "💔" },
-          { text: "Feeling embarrassed", emoji: "😳" },
-          { text: "All of the above", emoji: "😭" }
-        ]
-      }
-    ];
-
-    // State
-    let currentQuestion = 0;
-    let countdownInterval = null;
-
-    // Event Handlers
-    function startQuiz() {
-      document.getElementById('landing').classList.add('hidden');
-      document.getElementById('quiz').classList.remove('hidden');
-      showQuestion();
-    }
-
-    function showQuestion() {
-      const q = questions[currentQuestion];
-      document.getElementById('question').textContent = q.question;
-      document.getElementById('current-q').textContent = currentQuestion + 1;
-
-      const progress = ((currentQuestion + 1) / 3) * 100;
-      document.getElementById('progress-bar').style.width = progress + '%';
-      document.getElementById('progress-text').textContent = Math.round(progress) + '%';
-
-      const optionsContainer = document.getElementById('options');
-      optionsContainer.innerHTML = '';
-
-      q.options.forEach((opt, index) => {
-        const btn = document.createElement('button');
-        btn.className = 'option-card w-full bg-gray-50 hover:bg-[#007953] hover:text-white border-2 border-gray-200 hover:border-[#007953] rounded-xl p-4 text-left flex items-center gap-3 transition-all';
-        btn.innerHTML = `
-          <span class="text-2xl">${opt.emoji}</span>
-          <span class="font-semibold">${opt.text}</span>
-        `;
-        btn.onclick = () => selectAnswer(index);
-        optionsContainer.appendChild(btn);
-      });
-    }
-
-    function selectAnswer(index) {
-      const options = document.querySelectorAll('.option-card');
-      options[index].classList.add('shake');
-
-      setTimeout(() => {
-        currentQuestion++;
-        if (currentQuestion < 3) {
-          const quizCard = document.getElementById('quiz').querySelector('.bg-white');
-          quizCard.classList.remove('fade-in');
-          void quizCard.offsetWidth; // Trigger reflow
-          quizCard.classList.add('fade-in');
-          showQuestion();
-        } else {
-          showResults();
-        }
-      }, 300);
-    }
-
-    function showResults() {
-      document.getElementById('quiz').classList.add('hidden');
-      document.getElementById('results').classList.remove('hidden');
-      startCountdown();
-    }
-
-    function startCountdown() {
-      let time = 15 * 60; // 15 minutes in seconds
-      const countdownEl = document.getElementById('countdown');
-
-      countdownInterval = setInterval(() => {
-        const minutes = Math.floor(time / 60);
-        const seconds = time % 60;
-        countdownEl.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-
-        if (time <= 0) {
-          clearInterval(countdownInterval);
-        }
-        time--;
-      }, 1000);
-    }
-
-    // Element SDK Configuration
-    async function onConfigChange(config) {
-      const mainTitle = document.getElementById('main-title');
-      const subtitle = document.getElementById('subtitle');
-      const startBtn = document.getElementById('start-btn');
-
-      if (mainTitle) mainTitle.innerHTML = config.main_title || defaultConfig.main_title;
-      if (subtitle) subtitle.innerHTML = config.subtitle || defaultConfig.subtitle;
-      if (startBtn) startBtn.innerHTML = config.button_text || defaultConfig.button_text;
-
-      const customFont = config.font_family || defaultConfig.font_family;
-      document.body.style.fontFamily = `${customFont}, sans-serif`;
-    }
-
-    function mapToCapabilities(config) {
-      return {
-        recolorables: [
-          {
-            get: () => config.background_color || defaultConfig.background_color,
-            set: (value) => {
-              config.background_color = value;
-              window.elementSdk.setConfig({ background_color: value });
-            }
-          },
-          {
-            get: () => config.secondary_color || defaultConfig.secondary_color,
-            set: (value) => {
-              config.secondary_color = value;
-              window.elementSdk.setConfig({ secondary_color: value });
-            }
-          },
-          {
-            get: () => config.text_color || defaultConfig.text_color,
-            set: (value) => {
-              config.text_color = value;
-              window.elementSdk.setConfig({ text_color: value });
-            }
-          },
-          {
-            get: () => config.primary_color || defaultConfig.primary_color,
-            set: (value) => {
-              config.primary_color = value;
-              window.elementSdk.setConfig({ primary_color: value });
-            }
-          },
-          {
-            get: () => config.accent_color || defaultConfig.accent_color,
-            set: (value) => {
-              config.accent_color = value;
-              window.elementSdk.setConfig({ accent_color: value });
-            }
-          }
-        ],
-        borderables: [],
-        fontEditable: {
-          get: () => config.font_family || defaultConfig.font_family,
-          set: (value) => {
-            config.font_family = value;
-            window.elementSdk.setConfig({ font_family: value });
-          }
-        },
-        fontSizeable: undefined
-      };
-    }
-
-    function mapToEditPanelValues(config) {
-      return new Map([
-        ["main_title", config.main_title || defaultConfig.main_title],
-        ["subtitle", config.subtitle || defaultConfig.subtitle],
-        ["button_text", config.button_text || defaultConfig.button_text]
-      ]);
-    }
-
-    // Initialize SDK when available
     if (window.elementSdk) {
       window.elementSdk.init({
         defaultConfig,
-        onConfigChange,
-        mapToCapabilities,
-        mapToEditPanelValues
+        onConfigChange: async (config) => {
+          const brandName = document.getElementById('brand-name-display');
+          const headerCtaText = document.getElementById('header-cta-text');
+          const heroTitle = document.getElementById('hero-title');
+          const heroSubtitle = document.getElementById('hero-subtitle');
+          const benefitsTitle = document.getElementById('benefits-title');
+          const finalCtaTitle = document.getElementById('final-cta-title');
+          const finalCtaButton = document.getElementById('final-cta-button-text');
+          
+          if (brandName) brandName.textContent = config.brand_name || defaultConfig.brand_name;
+          if (headerCtaText) headerCtaText.textContent = config.cta_button_text || defaultConfig.cta_button_text;
+          if (heroTitle) heroTitle.textContent = config.hero_title || defaultConfig.hero_title;
+          if (heroSubtitle) heroSubtitle.textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+          if (benefitsTitle) benefitsTitle.textContent = config.benefits_title || defaultConfig.benefits_title;
+          if (finalCtaTitle) finalCtaTitle.textContent = config.final_cta_title || defaultConfig.final_cta_title;
+          if (finalCtaButton) finalCtaButton.textContent = config.final_cta_button || defaultConfig.final_cta_button;
+          
+          // Apply colors
+          const header = document.getElementById('main-header');
+          const hero = document.getElementById('hero-section');
+          const finalCta = document.getElementById('final-cta-section');
+          
+          if (header) header.style.backgroundColor = config.header_bg_color || defaultConfig.header_bg_color;
+          if (hero) hero.style.backgroundColor = config.hero_bg_color || defaultConfig.hero_bg_color;
+          if (finalCta) finalCta.style.backgroundColor = config.header_bg_color || defaultConfig.header_bg_color;
+          
+          // Apply font
+          const customFont = config.font_family || defaultConfig.font_family;
+          const fontStack = `'${customFont}', 'Poppins', sans-serif`;
+          const titles = document.querySelectorAll('.main-font, .bold-font, h1, h2, h3, h4');
+          titles.forEach(el => { el.style.fontFamily = fontStack; });
+          
+          // Apply font size
+          const baseSize = config.font_size || defaultConfig.font_size;
+          document.body.style.fontSize = `${baseSize}px`;
+        },
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            {
+              get: () => config.hero_bg_color || defaultConfig.hero_bg_color,
+              set: (value) => {
+                config.hero_bg_color = value;
+                window.elementSdk.setConfig({ hero_bg_color: value });
+              }
+            },
+            {
+              get: () => config.header_bg_color || defaultConfig.header_bg_color,
+              set: (value) => {
+                config.header_bg_color = value;
+                window.elementSdk.setConfig({ header_bg_color: value });
+              }
+            },
+            {
+              get: () => config.cta_color || defaultConfig.cta_color,
+              set: (value) => {
+                config.cta_color = value;
+                window.elementSdk.setConfig({ cta_color: value });
+              }
+            }
+          ],
+          borderables: [],
+          fontEditable: {
+            get: () => config.font_family || defaultConfig.font_family,
+            set: (value) => {
+              config.font_family = value;
+              window.elementSdk.setConfig({ font_family: value });
+            }
+          },
+          fontSizeable: {
+            get: () => config.font_size || defaultConfig.font_size,
+            set: (value) => {
+              config.font_size = value;
+              window.elementSdk.setConfig({ font_size: value });
+            }
+          }
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ["brand_name", config.brand_name || defaultConfig.brand_name],
+          ["cta_button_text", config.cta_button_text || defaultConfig.cta_button_text],
+          ["hero_title", config.hero_title || defaultConfig.hero_title],
+          ["hero_subtitle", config.hero_subtitle || defaultConfig.hero_subtitle],
+          ["benefits_title", config.benefits_title || defaultConfig.benefits_title],
+          ["final_cta_title", config.final_cta_title || defaultConfig.final_cta_title],
+          ["final_cta_button", config.final_cta_button || defaultConfig.final_cta_button]
+        ])
       });
     }
-
-    // Add event listener when DOM is ready
-    document.addEventListener('DOMContentLoaded', function() {
-      const startBtn = document.getElementById('start-btn');
-      if (startBtn) {
-        startBtn.addEventListener('click', startQuiz);
-      }
-    });
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d41c43590287d48',t:'MTc3MjEzMzI3Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f42e23c57fd5c96',t:'MTc3NzUxMzcwMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
