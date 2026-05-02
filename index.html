@@ -1,549 +1,383 @@
 <!doctype html>
-<html lang="en-US" class="h-full">
+<html lang="en" class="h-full">
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ProDentim - Natural Support for Healthy Teeth and Gums</title>
+  <title>ProDentim - Healthy Teeth &amp; Gums</title>
   <script src="/_sdk/element_sdk.js"></script>
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700;900&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
   <style>
-    html, body { height: 100%; width: 100%; margin: 0; padding: 0; }
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      overflow-x: hidden;
-    }
-    .main-font { font-family: 'Poppins', sans-serif; font-weight: 800; }
-    .bold-font { font-family: 'Poppins', sans-serif; font-weight: 900; }
-    
-    .cta-pulse {
-      animation: pulse-red 2s infinite;
-    }
-    @keyframes pulse-red {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); }
-      50% { box-shadow: 0 0 0 12px rgba(220, 38, 38, 0); }
-    }
-    
-    .fade-in-up {
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeInUp 0.8s ease-out forwards;
-    }
-    @keyframes fadeInUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .float-animation {
-      animation: float 4s ease-in-out infinite;
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-15px); }
-    }
-    
-    .stagger-1 { animation-delay: 0.1s; }
-    .stagger-2 { animation-delay: 0.3s; }
-    .stagger-3 { animation-delay: 0.5s; }
-    .stagger-4 { animation-delay: 0.7s; }
-    
-    .star-glow {
-      filter: drop-shadow(0 0 3px rgba(255, 193, 7, 0.6));
-    }
-    
-    .gradient-text {
-      background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    
-    .benefit-card {
-      transition: all 0.3s ease;
-    }
-    .benefit-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 40px rgba(0, 121, 83, 0.15);
-    }
-    
-    .testimonial-card {
-      transition: all 0.3s ease;
-    }
-    .testimonial-card:hover {
-      transform: translateY(-3px);
-    }
-    
-    .shine-effect {
-      position: relative;
-      overflow: hidden;
-    }
-    .shine-effect::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-      animation: shine 3s infinite;
-    }
-    @keyframes shine {
-      0% { left: -100%; }
-      50%, 100% { left: 100%; }
-    }
-    
-    .decorative-leaf {
-      position: absolute;
-      opacity: 0.15;
-      pointer-events: none;
-    }
-    
-    .scroll-indicator {
-      animation: bounce-soft 2s infinite;
-    }
-    @keyframes bounce-soft {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(10px); }
-    }
-    
-    .product-glow {
-      filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.2));
-    }
-    
-    @media (max-width: 768px) {
-      .hero-title-mobile { font-size: 2rem !important; line-height: 1.1 !important; }
-    }
-  </style>
+  html, body { height: 100%; width: 100%; margin: 0; padding: 0; }
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    background: #f8fafc;
+  }
+  .font-display { font-family: 'Fraunces', Georgia, serif; }
+
+  /* Hero decorative elements */
+  .hero-gradient {
+    background: linear-gradient(135deg, #10b981 0%, #059669 50%, #047857 100%);
+  }
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
+  /* Product bottle illustration */
+  .bottle-wrapper {
+    animation: float 4s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+  }
+
+  /* Fade in animation on scroll */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.7s ease-out;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Modal animations */
+  .modal-backdrop {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  .modal-backdrop.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .modal-box {
+    transform: scale(0.9) translateY(20px);
+    opacity: 0;
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .modal-backdrop.active .modal-box {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+
+  /* Star glow */
+  .star-row {
+    filter: drop-shadow(0 2px 4px rgba(251, 191, 36, 0.4));
+  }
+
+  /* Button pulse */
+  .pulse-btn {
+    animation: pulseBtn 2.5s ease-in-out infinite;
+  }
+  @keyframes pulseBtn {
+    0%, 100% { box-shadow: 0 10px 30px -5px rgba(220, 38, 38, 0.4); }
+    50% { box-shadow: 0 15px 40px -5px rgba(220, 38, 38, 0.7); }
+  }
+
+  /* Icon pop on hover */
+  .benefit-card {
+    transition: all 0.3s ease;
+  }
+  .benefit-card:hover {
+    transform: translateY(-6px);
+  }
+  .benefit-card:hover .benefit-icon {
+    transform: scale(1.1) rotate(-5deg);
+  }
+  .benefit-icon {
+    transition: transform 0.3s ease;
+  }
+
+  /* Sparkle */
+  .sparkle {
+    animation: sparkle 2s ease-in-out infinite;
+  }
+  @keyframes sparkle {
+    0%, 100% { opacity: 0.3; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.1); }
+  }
+
+  /* Custom scrollbar hidden on modal body when open */
+  body.modal-open { overflow: hidden; }
+
+  /* Tooth shine */
+  .tooth-shine {
+    animation: shine 3s ease-in-out infinite;
+  }
+  @keyframes shine {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+  }
+</style>
   <style>body { box-sizing: border-box; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
  </head>
  <body class="h-full w-full">
-  <div class="h-full w-full overflow-auto">
-   <!-- Header -->
-   <header id="main-header" class="w-full sticky top-0 z-50 shadow-md" style="background-color: #007953;">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-     <div class="flex items-center gap-2"><span id="brand-name-display" class="main-font text-white text-xl sm:text-2xl tracking-tight">ProDentim</span>
-     </div><a id="header-cta" href="https://prodentim24.com/text.php#aff=thiagobarber" target="_blank" rel="noopener noreferrer" class="bg-red-600 hover:bg-red-700 text-white font-bold px-4 sm:px-6 py-2 sm:py-3 rounded-full shine-effect text-sm sm:text-base transition-all transform hover:scale-105 shadow-lg"> <span class="flex items-center gap-2"> <i data-lucide="shopping-cart" style="width: 16px; height: 16px;"></i> <span id="header-cta-text">Order Now</span> </span> </a>
-    </div>
-   </header><!-- Hero Section -->
-   <section id="hero-section" class="w-full relative overflow-hidden" style="background-color: #76A686;">
-    <!-- Decorative elements -->
-    <div class="decorative-leaf" style="top: 10%; left: 5%;">
-     <i data-lucide="leaf" style="width: 80px; height: 80px; color: white;"></i>
-    </div>
-    <div class="decorative-leaf" style="bottom: 15%; right: 8%;">
-     <i data-lucide="leaf" style="width: 100px; height: 100px; color: white; transform: rotate(45deg);"></i>
-    </div>
-    <div class="decorative-leaf" style="top: 50%; right: 20%;">
-     <i data-lucide="sparkles" style="width: 60px; height: 60px; color: white;"></i>
-    </div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 relative z-10">
-     <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-      <div class="text-white fade-in-up stagger-1">
-       <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
-        <i data-lucide="shield-check" style="width: 16px; height: 16px; color: #FFD700;"></i> <span class="text-sm font-semibold">100% Natural Formula</span>
-       </div>
-       <h1 id="hero-title" class="bold-font hero-title-mobile text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-tight mb-6" style="font-family: 'Poppins', sans-serif; font-weight: 900;">Say Goodbye to Bad Breath and Reclaim Your Healthy Teeth and Gums</h1>
-       <p id="hero-subtitle" class="text-lg sm:text-xl mb-8 text-white/95 leading-relaxed">A natural approach designed to support your oral health, with probiotics that promote a healthier, more confident smile every single day.</p>
-       <div class="flex flex-col sm:flex-row gap-4 mb-8">
-        <a href="https://prodentim24.com/text.php#aff=thiagobarber" target="_blank" rel="noopener noreferrer" class="cta-pulse bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-4 rounded-full text-lg inline-flex items-center justify-center gap-3 transition-all transform hover:scale-105 shadow-xl"> <i data-lucide="shopping-cart" style="width: 20px; height: 20px;"></i> <span>Learn More Now</span> <i data-lucide="arrow-right" style="width: 20px; height: 20px;"></i> </a>
-       </div>
-       <div class="flex items-center gap-4 text-white/90">
-        <div class="flex -space-x-2">
-         <div class="w-10 h-10 rounded-full bg-yellow-400 border-2 border-white flex items-center justify-center">
-          <i data-lucide="user" style="width: 18px; height: 18px; color: #76A686;"></i>
+  <div id="app" class="w-full h-full overflow-auto">
+   <main><!-- HERO SECTION ONLY -->
+    <section id="hero" class="relative overflow-hidden hero-gradient text-white w-full h-full">
+     <div class="blob" style="width: 400px; height: 400px; background: #34d399; top: -100px; right: -100px;"></div>
+     <div class="blob" style="width: 350px; height: 350px; background: #fbbf24; bottom: -100px; left: -100px;"></div>
+     <div class="relative max-w-6xl mx-auto px-4 md:px-8 h-full flex items-center">
+      <div class="w-full grid md:grid-cols-2 gap-12 items-center py-12 md:py-0">
+       <div class="text-center md:text-left space-y-6">
+        <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-1.5 border border-white/30">
+         <i data-lucide="award" class="w-4 h-4"></i> <span class="text-sm font-semibold">#1 Dental Health Supplement 2024</span>
+        </div>
+        <h1 id="hero-title-el" class="font-display font-black leading-tight text-5xl md:text-7xl">Healthy Teeth &amp; Gums</h1>
+        <p id="hero-subtitle-el" class="text-lg md:text-xl opacity-95 leading-relaxed">A unique blend of 3.5 billion probiotics and nutrients specially designed to support the health of your teeth and gums.</p><button id="hero-cta-btn" class="cta-btn pulse-btn text-white font-bold px-8 py-4 rounded-full text-lg shadow-2xl hover:scale-105 transition-transform inline-flex items-center gap-2"> <span id="hero-cta-text">Learn More Now</span> <i data-lucide="arrow-right" class="w-5 h-5"></i> </button>
+        <div class="flex items-center gap-4 justify-center md:justify-start">
+         <div class="flex star-row gap-1">
+          <i data-lucide="star" class="w-5 h-5 fill-yellow-300 text-yellow-300"></i> <i data-lucide="star" class="w-5 h-5 fill-yellow-300 text-yellow-300"></i> <i data-lucide="star" class="w-5 h-5 fill-yellow-300 text-yellow-300"></i> <i data-lucide="star" class="w-5 h-5 fill-yellow-300 text-yellow-300"></i> <i data-lucide="star" class="w-5 h-5 fill-yellow-300 text-yellow-300"></i>
+         </div><span class="font-semibold text-sm">95,000+ Reviews</span>
+        </div>
+        <div class="flex flex-wrap gap-6 text-sm opacity-90">
+         <div class="flex items-center gap-2"><i data-lucide="leaf" class="w-5 h-5"></i> 100% Natural
          </div>
-         <div class="w-10 h-10 rounded-full bg-orange-400 border-2 border-white flex items-center justify-center">
-          <i data-lucide="user" style="width: 18px; height: 18px; color: #76A686;"></i>
+         <div class="flex items-center gap-2"><i data-lucide="shield-check" class="w-5 h-5"></i> FDA Approved
          </div>
-         <div class="w-10 h-10 rounded-full bg-pink-400 border-2 border-white flex items-center justify-center">
-          <i data-lucide="user" style="width: 18px; height: 18px; color: #76A686;"></i>
+         <div class="flex items-center gap-2"><i data-lucide="flask-conical" class="w-5 h-5"></i> GMP Certified
          </div>
         </div>
-        <div>
-         <div class="flex items-center gap-1">
-          <i data-lucide="star" class="star-glow" style="width: 16px; height: 16px; color: #FFD700; fill: #FFD700;"></i> <i data-lucide="star" class="star-glow" style="width: 16px; height: 16px; color: #FFD700; fill: #FFD700;"></i> <i data-lucide="star" class="star-glow" style="width: 16px; height: 16px; color: #FFD700; fill: #FFD700;"></i> <i data-lucide="star" class="star-glow" style="width: 16px; height: 16px; color: #FFD700; fill: #FFD700;"></i> <i data-lucide="star" class="star-glow" style="width: 16px; height: 16px; color: #FFD700; fill: #FFD700;"></i>
+        <div class="space-y-4 pt-4">
+         <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4">
+          <div class="flex items-start gap-3">
+           <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
+            <i data-lucide="badge-check" class="w-5 h-5 text-yellow-300"></i>
+           </div>
+           <div class="text-left text-sm">
+            <p id="fda-title-el" class="font-semibold text-white mb-1">FDA Registered &amp; Clinically Tested</p>
+            <p id="fda-recommendation-el" class="text-white/90 leading-relaxed text-xs">"ProDentim has demonstrated significant improvement in gum health and overall oral microbiome balance in clinical studies. Recommended for patients seeking natural probiotic support."</p>
+            <p id="doctor-name-el" class="text-white/70 mt-2 text-xs">— Dr. James Mitchell, DDS</p>
+           </div>
+          </div>
          </div>
-         <p class="text-sm mt-1">Thousands of positive reviews</p>
+         <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-4">
+          <div class="flex items-start gap-3">
+           <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0">
+            <i data-lucide="stethoscope" class="w-5 h-5 text-emerald-300"></i>
+           </div>
+           <div class="text-left text-sm">
+            <p id="doctor2-recommendation-el" class="text-white/90 leading-relaxed text-xs">"The probiotic formula targets harmful bacteria while promoting beneficial oral microbiota. This represents a significant advancement in preventative dental care."</p>
+            <p id="doctor2-name-el" class="text-white/70 mt-2 text-xs">— Dr. Sarah Chen, Prosthodontist, UCLA</p>
+           </div>
+          </div>
+         </div>
         </div>
        </div>
-      </div>
-      <div class="flex justify-center lg:justify-end fade-in-up stagger-2">
-       <div class="relative">
-        <div class="absolute inset-0 bg-white/10 rounded-full blur-3xl"></div>
-        <div class="float-animation relative">
-         <img src="https://i.imgur.com/93S0oVz.png" alt="ProDentim - Natural Support for Healthy Oral Health" loading="lazy" class="product-glow max-w-xs sm:max-w-sm lg:max-w-md w-full h-auto" onerror="console.error('Image failed to load:', this.src); this.style.background='#ffffff'; this.style.padding='40px'; this.style.borderRadius='20px'; this.alt='ProDentim';">
-        </div>
-        <div class="absolute -top-4 -right-4 bg-yellow-400 text-gray-900 font-bold px-4 py-2 rounded-full shadow-lg transform rotate-12 text-sm">
-         <div class="flex items-center gap-1">
-          <i data-lucide="zap" style="width: 14px; height: 14px;"></i> <span>Natural</span>
+       <div class="hidden md:flex relative justify-center items-start">
+        <div class="absolute w-80 h-80 bg-white/10 rounded-full blur-3xl"></div>
+        <div class="bottle-wrapper relative"><img src="https://imgur.com/gt5fJfa.png" alt="ProDentim Product" class="w-72 drop-shadow-2xl" loading="lazy" onerror="console.error('Image failed to load:', this.src); this.style.background='#e5e7eb'; this.alt='Product image unavailable';">
+         <div class="absolute -top-4 -right-2 sparkle">
+          <i data-lucide="sparkles" class="w-8 h-8 text-yellow-300"></i>
+         </div>
+         <div class="absolute bottom-10 -left-4 sparkle" style="animation-delay: 0.5s;">
+          <i data-lucide="sparkle" class="w-6 h-6 text-yellow-200"></i>
+         </div>
+         <div class="absolute top-1/3 -right-6 sparkle" style="animation-delay: 1s;">
+          <i data-lucide="sparkle" class="w-5 h-5 text-white"></i>
          </div>
         </div>
        </div>
       </div>
      </div>
-     <div class="flex justify-center mt-12 scroll-indicator">
-      <i data-lucide="chevron-down" style="width: 32px; height: 32px; color: white;"></i>
-     </div>
-    </div>
-   </section><!-- Problem Section -->
-   <section class="w-full py-16 sm:py-20 bg-gray-50">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-     <div class="text-center mb-12">
-      <h2 class="main-font text-3xl sm:text-4xl lg:text-5xl mb-4" style="color: #007953;">Do Any of These Sound Familiar?</h2>
-      <p class="text-lg text-gray-600 max-w-2xl mx-auto">Many people struggle with their oral health every day. Check if this happens to you:</p>
-     </div>
-     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <div class="bg-white p-6 rounded-2xl shadow-md benefit-card border-l-4" style="border-color: #76A686;">
-       <div class="w-12 h-12 rounded-full flex items-center justify-center mb-4" style="background-color: rgba(118, 166, 134, 0.15);">
-        <i data-lucide="wind" style="width: 24px; height: 24px; color: #007953;"></i>
-       </div>
-       <h3 class="font-bold text-lg mb-2 text-gray-900">Persistent Bad Breath</h3>
-       <p class="text-gray-600">Feel self-conscious talking to others because of bad breath concerns?</p>
+    </section>
+   </main><!-- MODAL -->
+   <div id="modal-backdrop" class="modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="modal-title-el">
+    <div class="modal-box relative w-full max-w-md bg-white rounded-3xl shadow-2xl overflow-hidden">
+     <!-- Decorative top -->
+     <div class="hero-gradient h-24 relative flex items-center justify-center">
+      <div class="absolute inset-0 opacity-30">
+       <div class="blob" style="width: 150px; height: 150px; background: #fbbf24; top: -40px; right: -20px;"></div>
       </div>
-      <div class="bg-white p-6 rounded-2xl shadow-md benefit-card border-l-4" style="border-color: #76A686;">
-       <div class="w-12 h-12 rounded-full flex items-center justify-center mb-4" style="background-color: rgba(118, 166, 134, 0.15);">
-        <i data-lucide="droplet" style="width: 24px; height: 24px; color: #007953;"></i>
+      <div class="relative w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg -mb-8 border-4 border-white">
+       <i data-lucide="shopping-cart" class="w-8 h-8 text-emerald-600"></i>
+      </div><button id="modal-close" aria-label="Close" class="absolute top-3 right-3 w-9 h-9 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center text-white transition"> <i data-lucide="x" class="w-5 h-5"></i> </button>
+     </div>
+     <div class="px-6 pt-12 pb-6 text-center">
+      <h3 id="modal-title-el" class="font-display font-black text-2xl text-slate-900 mb-3">You're almost there!</h3>
+      <p id="modal-message-el" class="text-slate-600 leading-relaxed mb-6">You're about to access the official ProDentim checkout page where you can claim your special discount and start your journey to a healthier smile.</p>
+      <div class="flex items-center justify-center gap-4 mb-6 text-xs text-slate-500">
+       <div class="flex items-center gap-1.5"><i data-lucide="lock" class="w-3.5 h-3.5 text-emerald-600"></i> Secure
        </div>
-       <h3 class="font-bold text-lg mb-2 text-gray-900">Sensitive Gums</h3>
-       <p class="text-gray-600">Notice inflamed or bleeding gums when you brush?</p>
+       <div class="flex items-center gap-1.5"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600"></i> Official Site
+       </div>
+       <div class="flex items-center gap-1.5"><i data-lucide="badge-check" class="w-3.5 h-3.5 text-emerald-600"></i> Verified
+       </div>
       </div>
-      <div class="bg-white p-6 rounded-2xl shadow-md benefit-card border-l-4" style="border-color: #76A686;">
-       <div class="w-12 h-12 rounded-full flex items-center justify-center mb-4" style="background-color: rgba(118, 166, 134, 0.15);">
-        <i data-lucide="smile" style="width: 24px; height: 24px; color: #007953;"></i>
-       </div>
-       <h3 class="font-bold text-lg mb-2 text-gray-900">Low Confidence</h3>
-       <p class="text-gray-600">Avoid smiling in photos or public because you're insecure about your teeth?</p>
+      <div class="flex flex-col gap-3">
+       <button id="modal-continue" class="cta-btn w-full text-white font-bold py-4 rounded-full shadow-lg hover:scale-[1.02] transition-transform flex items-center justify-center gap-2"> <span id="modal-continue-text">Continue to ProDentim</span> <i data-lucide="external-link" class="w-4 h-4"></i> </button> <button id="modal-back" class="w-full text-slate-600 hover:text-slate-900 font-semibold py-3 rounded-full hover:bg-slate-100 transition"> <span id="modal-back-text">Go Back</span> </button>
       </div>
      </div>
     </div>
-   </section><!-- Benefits Section -->
-   <section id="benefits-section" class="w-full py-16 sm:py-20 bg-white">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-     <div class="text-center mb-12">
-      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-4" style="background-color: rgba(0, 121, 83, 0.1);">
-       <i data-lucide="leaf" style="width: 16px; height: 16px; color: #007953;"></i> <span class="text-sm font-semibold" style="color: #007953;">Natural Formula</span>
-      </div>
-      <h2 id="benefits-title" class="main-font text-3xl sm:text-4xl lg:text-5xl mb-4" style="color: #007953;">Why ProDentim is Different</h2>
-      <p class="text-lg text-gray-600 max-w-2xl mx-auto">Developed with natural ingredients to support your oral health from the inside out</p>
-     </div>
-     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-      <div class="benefit-card p-6 rounded-2xl text-center" style="background-color: #f0f9f4;">
-       <div class="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4" style="background-color: #007953;">
-        <i data-lucide="sparkles" style="width: 28px; height: 28px; color: white;"></i>
-       </div>
-       <h3 class="font-bold text-xl mb-2 text-gray-900">Fresher Breath</h3>
-       <p class="text-gray-600">Supports fresh breath naturally</p>
-      </div>
-      <div class="benefit-card p-6 rounded-2xl text-center" style="background-color: #f0f9f4;">
-       <div class="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4" style="background-color: #007953;">
-        <i data-lucide="shield" style="width: 28px; height: 28px; color: white;"></i>
-       </div>
-       <h3 class="font-bold text-xl mb-2 text-gray-900">Healthy Gums</h3>
-       <p class="text-gray-600">Contributes to gum wellness</p>
-      </div>
-      <div class="benefit-card p-6 rounded-2xl text-center" style="background-color: #f0f9f4;">
-       <div class="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4" style="background-color: #007953;">
-        <i data-lucide="smile" style="width: 28px; height: 28px; color: white;"></i>
-       </div>
-       <h3 class="font-bold text-xl mb-2 text-gray-900">Confident Smile</h3>
-       <p class="text-gray-600">Helps you smile with more confidence</p>
-      </div>
-      <div class="benefit-card p-6 rounded-2xl text-center" style="background-color: #f0f9f4;">
-       <div class="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4" style="background-color: #007953;">
-        <i data-lucide="heart" style="width: 28px; height: 28px; color: white;"></i>
-       </div>
-       <h3 class="font-bold text-xl mb-2 text-gray-900">Oral Wellness</h3>
-       <p class="text-gray-600">Promotes a healthy oral microbiome</p>
-      </div>
-     </div>
-    </div>
-   </section><!-- Ingredients Highlight -->
-   <section class="w-full py-16 sm:py-20" style="background: linear-gradient(135deg, #76A686 0%, #007953 100%);">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-     <div class="grid lg:grid-cols-2 gap-10 items-center">
-      <div class="text-white">
-       <h2 class="main-font text-3xl sm:text-4xl lg:text-5xl mb-6">Hand-Selected Natural Ingredients</h2>
-       <p class="text-lg mb-6 text-white/95">ProDentim was developed with a unique combination of probiotics and natural ingredients, designed to support oral health.</p>
-       <div class="space-y-4">
-        <div class="flex items-start gap-3">
-         <div class="w-8 h-8 rounded-full bg-white/20 flex-shrink-0 flex items-center justify-center mt-1">
-          <i data-lucide="check" style="width: 18px; height: 18px; color: white;"></i>
-         </div>
-         <div>
-          <h4 class="font-bold text-lg">Specialized Probiotics</h4>
-          <p class="text-white/90">Carefully selected strains for oral health</p>
-         </div>
-        </div>
-        <div class="flex items-start gap-3">
-         <div class="w-8 h-8 rounded-full bg-white/20 flex-shrink-0 flex items-center justify-center mt-1">
-          <i data-lucide="check" style="width: 18px; height: 18px; color: white;"></i>
-         </div>
-         <div>
-          <h4 class="font-bold text-lg">Natural Ingredients</h4>
-          <p class="text-white/90">Premium quality botanical components</p>
-         </div>
-        </div>
-        <div class="flex items-start gap-3">
-         <div class="w-8 h-8 rounded-full bg-white/20 flex-shrink-0 flex items-center justify-center mt-1">
-          <i data-lucide="check" style="width: 18px; height: 18px; color: white;"></i>
-         </div>
-         <div>
-          <h4 class="font-bold text-lg">Stimulant-Free</h4>
-          <p class="text-white/90">Carefully crafted formula</p>
-         </div>
-        </div>
-        <div class="flex items-start gap-3">
-         <div class="w-8 h-8 rounded-full bg-white/20 flex-shrink-0 flex items-center justify-center mt-1">
-          <i data-lucide="check" style="width: 18px; height: 18px; color: white;"></i>
-         </div>
-         <div>
-          <h4 class="font-bold text-lg">Easy to Use</h4>
-          <p class="text-white/90">Simple to integrate into your daily routine</p>
-         </div>
-        </div>
-       </div>
-      </div>
-      <div class="flex justify-center">
-       <div class="relative float-animation">
-        <div class="absolute inset-0 bg-white/10 rounded-full blur-3xl"></div><img src="https://i.imgur.com/93S0oVz.png" alt="ProDentim" loading="lazy" class="product-glow max-w-xs sm:max-w-sm w-full h-auto relative" onerror="console.error('Image failed to load:', this.src); this.style.background='#ffffff'; this.style.padding='40px'; this.style.borderRadius='20px'; this.alt='ProDentim';">
-       </div>
-      </div>
-     </div>
-    </div>
-   </section><!-- Social Proof -->
-   <section class="w-full py-16 sm:py-20 bg-gray-50">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-     <div class="text-center mb-12">
-      <h2 class="main-font text-3xl sm:text-4xl lg:text-5xl mb-4" style="color: #007953;">What People Are Saying</h2>
-      <div class="flex items-center justify-center gap-2 mb-2">
-       <i data-lucide="star" class="star-glow" style="width: 24px; height: 24px; color: #FFD700; fill: #FFD700;"></i> <i data-lucide="star" class="star-glow" style="width: 24px; height: 24px; color: #FFD700; fill: #FFD700;"></i> <i data-lucide="star" class="star-glow" style="width: 24px; height: 24px; color: #FFD700; fill: #FFD700;"></i> <i data-lucide="star" class="star-glow" style="width: 24px; height: 24px; color: #FFD700; fill: #FFD700;"></i> <i data-lucide="star" class="star-glow" style="width: 24px; height: 24px; color: #FFD700; fill: #FFD700;"></i>
-      </div>
-      <p class="text-lg text-gray-600">Reviews from satisfied customers</p>
-     </div>
-     <div class="grid md:grid-cols-3 gap-6">
-      <div class="bg-white p-6 rounded-2xl shadow-md testimonial-card">
-       <div class="flex items-center gap-1 mb-3">
-        <i data-lucide="star" style="width: 16px; height: 16px; color: #FFD700; fill: #FFD700;"></i> <i data-lucide="star" style="width: 16px; height: 16px; color: #FFD700; fill: #FFD700;"></i> <i data-lucide="star" style="width: 16px; height: 16px; color: #FFD700; fill: #FFD700;"></i> <i data-lucide="star" style="width: 16px; height: 16px; color: #FFD700; fill: #FFD700;"></i> <i data-lucide="star" style="width: 16px; height: 16px; color: #FFD700; fill: #FFD700;"></i>
-       </div>
-       <p class="text-gray-700 mb-4 italic">"I'm very satisfied with this product. I feel more confident when I smile and talk with people."</p>
-       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background-color: rgba(0, 121, 83, 0.15);">
-         <i data-lucide="user" style="width: 20px; height: 20px; color: #007953;"></i>
-        </div>
-        <div>
-         <p class="font-bold text-gray-900">Maria S.</p>
-         <p class="text-sm text-gray-500">Verified Customer</p>
-        </div>
-       </div>
-      </div>
-      <div class="bg-white p-6 rounded-2xl shadow-md testimonial-card">
-       <div class="flex items-center gap-1 mb-3">
-        <i data-lucide="star" style="width: 16px; height: 16px; color: #FFD700; fill: #FFD700;"></i> <i data-lucide="star" style="width: 16px; height: 16px; color: #FFD700; fill: #FFD700;"></i> <i data-lucide="star" style="width: 16px; height: 16px; color: #FFD700; fill: #FFD700;"></i> <i data-lucide="star" style="width: 16px; height: 16px; color: #FFD700; fill: #FFD700;"></i> <i data-lucide="star" style="width: 16px; height: 16px; color: #FFD700; fill: #FFD700;"></i>
-       </div>
-       <p class="text-gray-700 mb-4 italic">"Quality product and easy to use daily. I recommend it to anyone looking to care for their oral health."</p>
-       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background-color: rgba(0, 121, 83, 0.15);">
-         <i data-lucide="user" style="width: 20px; height: 20px; color: #007953;"></i>
-        </div>
-        <div>
-         <p class="font-bold text-gray-900">John P.</p>
-         <p class="text-sm text-gray-500">Verified Customer</p>
-        </div>
-       </div>
-      </div>
-      <div class="bg-white p-6 rounded-2xl shadow-md testimonial-card">
-       <div class="flex items-center gap-1 mb-3">
-        <i data-lucide="star" style="width: 16px; height: 16px; color: #FFD700; fill: #FFD700;"></i> <i data-lucide="star" style="width: 16px; height: 16px; color: #FFD700; fill: #FFD700;"></i> <i data-lucide="star" style="width: 16px; height: 16px; color: #FFD700; fill: #FFD700;"></i> <i data-lucide="star" style="width: 16px; height: 16px; color: #FFD700; fill: #FFD700;"></i> <i data-lucide="star" style="width: 16px; height: 16px; color: #FFD700; fill: #FFD700;"></i>
-       </div>
-       <p class="text-gray-700 mb-4 italic">"Really liked the results. I'm more eager to smile and take better care of my oral health."</p>
-       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-full flex items-center justify-center" style="background-color: rgba(0, 121, 83, 0.15);">
-         <i data-lucide="user" style="width: 20px; height: 20px; color: #007953;"></i>
-        </div>
-        <div>
-         <p class="font-bold text-gray-900">Ana L.</p>
-         <p class="text-sm text-gray-500">Verified Customer</p>
-        </div>
-       </div>
-      </div>
-     </div>
-    </div>
-   </section><!-- Trust Badges -->
-   <section class="w-full py-12 bg-white border-t border-b border-gray-100">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-     <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-      <div class="text-center">
-       <div class="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-3" style="background-color: rgba(0, 121, 83, 0.1);">
-        <i data-lucide="leaf" style="width: 28px; height: 28px; color: #007953;"></i>
-       </div>
-       <p class="font-bold text-gray-900">100% Natural</p>
-      </div>
-      <div class="text-center">
-       <div class="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-3" style="background-color: rgba(0, 121, 83, 0.1);">
-        <i data-lucide="shield-check" style="width: 28px; height: 28px; color: #007953;"></i>
-       </div>
-       <p class="font-bold text-gray-900">Quality Tested</p>
-      </div>
-      <div class="text-center">
-       <div class="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-3" style="background-color: rgba(0, 121, 83, 0.1);">
-        <i data-lucide="award" style="width: 28px; height: 28px; color: #007953;"></i>
-       </div>
-       <p class="font-bold text-gray-900">Premium Quality</p>
-      </div>
-      <div class="text-center">
-       <div class="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-3" style="background-color: rgba(0, 121, 83, 0.1);">
-        <i data-lucide="truck" style="width: 28px; height: 28px; color: #007953;"></i>
-       </div>
-       <p class="font-bold text-gray-900">Fast Shipping</p>
-      </div>
-     </div>
-    </div>
-   </section><!-- Final CTA -->
-   <section id="final-cta-section" class="w-full py-16 sm:py-20 relative overflow-hidden" style="background-color: #007953;">
-    <div class="decorative-leaf" style="top: 10%; left: 5%;">
-     <i data-lucide="sparkles" style="width: 100px; height: 100px; color: white;"></i>
-    </div>
-    <div class="decorative-leaf" style="bottom: 10%; right: 5%;">
-     <i data-lucide="leaf" style="width: 120px; height: 120px; color: white;"></i>
-    </div>
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-     <h2 id="final-cta-title" class="main-font text-3xl sm:text-4xl lg:text-5xl text-white mb-6">Ready to Transform Your Oral Health?</h2>
-     <p class="text-lg sm:text-xl text-white/95 mb-8 max-w-2xl mx-auto">Discover on the next page all the details about ProDentim and the special conditions available for you today.</p><a href="https://prodentim24.com/text.php#aff=thiagobarber" target="_blank" rel="noopener noreferrer" class="cta-pulse bg-red-600 hover:bg-red-700 text-white font-bold px-10 py-5 rounded-full text-xl inline-flex items-center justify-center gap-3 transition-all transform hover:scale-105 shadow-2xl"> <i data-lucide="shopping-cart" style="width: 24px; height: 24px;"></i> <span id="final-cta-button-text">Get ProDentim Now</span> <i data-lucide="arrow-right" style="width: 24px; height: 24px;"></i> </a>
-     <div class="mt-8 flex flex-wrap items-center justify-center gap-6 text-white/90">
-      <div class="flex items-center gap-2">
-       <i data-lucide="lock" style="width: 18px; height: 18px;"></i> <span class="text-sm">Secure Purchase</span>
-      </div>
-      <div class="flex items-center gap-2">
-       <i data-lucide="truck" style="width: 18px; height: 18px;"></i> <span class="text-sm">Fast Shipping</span>
-      </div>
-      <div class="flex items-center gap-2">
-       <i data-lucide="shield-check" style="width: 18px; height: 18px;"></i> <span class="text-sm">Satisfaction Guaranteed</span>
-      </div>
-     </div>
-    </div>
-   </section><!-- Footer -->
-   <footer class="w-full bg-gray-900 text-gray-400 py-8">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-     <div class="flex items-center justify-center gap-2 mb-4">
-      <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center">
-       <i data-lucide="sparkles" style="color: #007953; width: 18px; height: 18px;"></i>
-      </div><span class="main-font text-white text-xl">ProDentim</span>
-     </div>
-     <p class="text-sm mb-4 max-w-2xl mx-auto">The statements presented on this page have not been evaluated by health authorities. This product is not intended to diagnose, treat, cure, or prevent any disease. Results may vary from person to person. Always consult a healthcare professional before using any supplement.</p>
-     <p class="text-xs">© 2024 ProDentim. All rights reserved.</p>
-    </div>
-   </footer>
+   </div>
   </div>
   <script>
-    // Initialize Lucide icons
-    lucide.createIcons();
+  // ProDentim checkout URL
+  const PRODENTIM_URL = 'https://prodentim24.com/text.php#aff=thiagobarber';
 
-    const defaultConfig = {
-      brand_name: "ProDentim",
-      cta_button_text: "Order Now",
-      hero_title: "Say Goodbye to Bad Breath and Reclaim Your Healthy Teeth and Gums",
-      hero_subtitle: "A natural approach designed to support your oral health, with probiotics that promote a healthier, more confident smile every single day.",
-      benefits_title: "Why ProDentim is Different",
-      final_cta_title: "Ready to Transform Your Oral Health?",
-      final_cta_button: "Get ProDentim Now",
-      header_bg_color: "#007953",
-      hero_bg_color: "#76A686",
-      cta_color: "#DC2626",
-      font_family: "Poppins",
-      font_size: 16
-    };
+  const defaultConfig = {
+    brand_name: 'ProDentim',
+    hero_title: 'Healthy Teeth & Gums',
+    hero_subtitle: 'A unique blend of 3.5 billion probiotics and nutrients specially designed to support the health of your teeth and gums.',
+    hero_cta: 'Learn More Now',
+    fda_title: 'FDA Registered & Clinically Tested',
+    fda_recommendation: 'ProDentim has demonstrated significant improvement in gum health and overall oral microbiome balance in clinical studies. Recommended for patients seeking natural probiotic support.',
+    doctor_name: 'Dr. James Mitchell, DDS, Dental Health Institute',
+    doctor2_name: 'Dr. Sarah Chen, Prosthodontist, UCLA School of Dentistry',
+    doctor2_recommendation: 'The probiotic formula targets harmful bacteria while promoting beneficial oral microbiota. This approach represents a significant advancement in preventative dental care.',
+    modal_message: "You're about to access the official ProDentim checkout page where you can claim your special discount and start your journey to a healthier smile.",
+    modal_continue: 'Continue to ProDentim',
+    modal_back: 'Go Back',
+    hero_bg_color: '#059669',
+    cta_color: '#dc2626',
+    text_color: '#0f172a',
+    font_family: 'Plus Jakarta Sans',
+    font_size: 16
+  };
 
-    if (window.elementSdk) {
-      window.elementSdk.init({
-        defaultConfig,
-        onConfigChange: async (config) => {
-          const brandName = document.getElementById('brand-name-display');
-          const headerCtaText = document.getElementById('header-cta-text');
-          const heroTitle = document.getElementById('hero-title');
-          const heroSubtitle = document.getElementById('hero-subtitle');
-          const benefitsTitle = document.getElementById('benefits-title');
-          const finalCtaTitle = document.getElementById('final-cta-title');
-          const finalCtaButton = document.getElementById('final-cta-button-text');
-          
-          if (brandName) brandName.textContent = config.brand_name || defaultConfig.brand_name;
-          if (headerCtaText) headerCtaText.textContent = config.cta_button_text || defaultConfig.cta_button_text;
-          if (heroTitle) heroTitle.textContent = config.hero_title || defaultConfig.hero_title;
-          if (heroSubtitle) heroSubtitle.textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
-          if (benefitsTitle) benefitsTitle.textContent = config.benefits_title || defaultConfig.benefits_title;
-          if (finalCtaTitle) finalCtaTitle.textContent = config.final_cta_title || defaultConfig.final_cta_title;
-          if (finalCtaButton) finalCtaButton.textContent = config.final_cta_button || defaultConfig.final_cta_button;
-          
-          // Apply colors
-          const header = document.getElementById('main-header');
-          const hero = document.getElementById('hero-section');
-          const finalCta = document.getElementById('final-cta-section');
-          
-          if (header) header.style.backgroundColor = config.header_bg_color || defaultConfig.header_bg_color;
-          if (hero) hero.style.backgroundColor = config.hero_bg_color || defaultConfig.hero_bg_color;
-          if (finalCta) finalCta.style.backgroundColor = config.header_bg_color || defaultConfig.header_bg_color;
-          
-          // Apply font
-          const customFont = config.font_family || defaultConfig.font_family;
-          const fontStack = `'${customFont}', 'Poppins', sans-serif`;
-          const titles = document.querySelectorAll('.main-font, .bold-font, h1, h2, h3, h4');
-          titles.forEach(el => { el.style.fontFamily = fontStack; });
-          
-          // Apply font size
-          const baseSize = config.font_size || defaultConfig.font_size;
-          document.body.style.fontSize = `${baseSize}px`;
-        },
-        mapToCapabilities: (config) => ({
-          recolorables: [
-            {
-              get: () => config.hero_bg_color || defaultConfig.hero_bg_color,
-              set: (value) => {
-                config.hero_bg_color = value;
-                window.elementSdk.setConfig({ hero_bg_color: value });
-              }
-            },
-            {
-              get: () => config.header_bg_color || defaultConfig.header_bg_color,
-              set: (value) => {
-                config.header_bg_color = value;
-                window.elementSdk.setConfig({ header_bg_color: value });
-              }
-            },
-            {
-              get: () => config.cta_color || defaultConfig.cta_color,
-              set: (value) => {
-                config.cta_color = value;
-                window.elementSdk.setConfig({ cta_color: value });
-              }
-            }
-          ],
-          borderables: [],
-          fontEditable: {
-            get: () => config.font_family || defaultConfig.font_family,
-            set: (value) => {
-              config.font_family = value;
-              window.elementSdk.setConfig({ font_family: value });
-            }
-          },
-          fontSizeable: {
-            get: () => config.font_size || defaultConfig.font_size,
-            set: (value) => {
-              config.font_size = value;
-              window.elementSdk.setConfig({ font_size: value });
-            }
-          }
-        }),
-        mapToEditPanelValues: (config) => new Map([
-          ["brand_name", config.brand_name || defaultConfig.brand_name],
-          ["cta_button_text", config.cta_button_text || defaultConfig.cta_button_text],
-          ["hero_title", config.hero_title || defaultConfig.hero_title],
-          ["hero_subtitle", config.hero_subtitle || defaultConfig.hero_subtitle],
-          ["benefits_title", config.benefits_title || defaultConfig.benefits_title],
-          ["final_cta_title", config.final_cta_title || defaultConfig.final_cta_title],
-          ["final_cta_button", config.final_cta_button || defaultConfig.final_cta_button]
-        ])
-      });
+  function onConfigChange(config) {
+    const c = { ...defaultConfig, ...config };
+
+    // Text updates
+    document.getElementById('hero-title-el').textContent = c.hero_title;
+    document.getElementById('hero-subtitle-el').textContent = c.hero_subtitle;
+    document.getElementById('hero-cta-text').textContent = c.hero_cta;
+    document.getElementById('fda-title-el').textContent = c.fda_title;
+    document.getElementById('fda-recommendation-el').textContent = c.fda_recommendation;
+    document.getElementById('doctor-name-el').textContent = c.doctor_name;
+    document.getElementById('doctor2-name-el').textContent = c.doctor2_name;
+    document.getElementById('doctor2-recommendation-el').textContent = c.doctor2_recommendation;
+    document.getElementById('modal-title-el').textContent = c.modal_title;
+    document.getElementById('modal-message-el').textContent = c.modal_message;
+    document.getElementById('modal-continue-text').textContent = c.modal_continue;
+    document.getElementById('modal-back-text').textContent = c.modal_back;
+
+    // Colors - hero gradient
+    const heroEls = document.querySelectorAll('.hero-gradient');
+    heroEls.forEach(el => {
+      el.style.background = `linear-gradient(135deg, ${c.hero_bg_color} 0%, ${shade(c.hero_bg_color, -15)} 50%, ${shade(c.hero_bg_color, -30)} 100%)`;
+    });
+
+    // CTA buttons
+    document.querySelectorAll('.cta-btn').forEach(btn => {
+      btn.style.backgroundColor = c.cta_color;
+    });
+
+    // Font family
+    const fontStack = `'${c.font_family}', system-ui, sans-serif`;
+    document.body.style.fontFamily = fontStack;
+
+    // Font size base
+    const base = c.font_size;
+    document.body.style.fontSize = `${base}px`;
+  }
+
+  // Helper: shade a hex color
+  function shade(hex, percent) {
+    const num = parseInt(hex.replace('#', ''), 16);
+    const amt = Math.round(2.55 * percent);
+    const R = Math.min(255, Math.max(0, (num >> 16) + amt));
+    const G = Math.min(255, Math.max(0, ((num >> 8) & 0x00FF) + amt));
+    const B = Math.min(255, Math.max(0, (num & 0x0000FF) + amt));
+    return '#' + (0x1000000 + (R << 16) + (G << 8) + B).toString(16).slice(1);
+  }
+
+  // Modal logic
+  const modal = document.getElementById('modal-backdrop');
+  let lastFocused = null;
+
+  function openModal(triggerEl) {
+    lastFocused = triggerEl || document.activeElement;
+    modal.classList.add('active');
+    document.body.classList.add('modal-open');
+    // Focus continue button after animation
+    setTimeout(() => document.getElementById('modal-continue').focus(), 100);
+  }
+
+  function closeModal() {
+    modal.classList.remove('active');
+    document.body.classList.remove('modal-open');
+    if (lastFocused) lastFocused.focus();
+  }
+
+  // Only hero CTA button opens modal
+  document.getElementById('hero-cta-btn').addEventListener('click', (e) => openModal(e.currentTarget));
+
+  document.getElementById('modal-close').addEventListener('click', closeModal);
+  document.getElementById('modal-back').addEventListener('click', () => {
+    window.open(PRODENTIM_URL, '_blank', 'noopener,noreferrer');
+    closeModal();
+  });
+
+  document.getElementById('modal-continue').addEventListener('click', () => {
+    window.open(PRODENTIM_URL, '_blank', 'noopener,noreferrer');
+    closeModal();
+  });
+
+  // Close on backdrop click
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      window.open(PRODENTIM_URL, '_blank', 'noopener,noreferrer');
+      closeModal();
     }
-  </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f42e23c57fd5c96',t:'MTc3NzUxMzcwMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+  });
+
+  // Keyboard - ESC closes modal
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+      closeModal();
+    }
+  });
+
+  // Initialize Lucide icons
+  lucide.createIcons();
+
+  // Initialize Element SDK
+  window.elementSdk.init({
+    defaultConfig,
+    onConfigChange,
+    mapToCapabilities: (config) => ({
+      recolorables: [
+        { get: () => config.hero_bg_color || defaultConfig.hero_bg_color, set: (v) => { config.hero_bg_color = v; window.elementSdk.setConfig({ hero_bg_color: v }); } },
+        { get: () => config.cta_color || defaultConfig.cta_color, set: (v) => { config.cta_color = v; window.elementSdk.setConfig({ cta_color: v }); } }
+      ],
+      borderables: [],
+      fontEditable: {
+        get: () => config.font_family || defaultConfig.font_family,
+        set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); }
+      },
+      fontSizeable: {
+        get: () => config.font_size || defaultConfig.font_size,
+        set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); }
+      }
+    }),
+    mapToEditPanelValues: (config) => new Map([
+      ['hero_title', config.hero_title || defaultConfig.hero_title],
+      ['hero_subtitle', config.hero_subtitle || defaultConfig.hero_subtitle],
+      ['hero_cta', config.hero_cta || defaultConfig.hero_cta],
+      ['fda_title', config.fda_title || defaultConfig.fda_title],
+      ['fda_recommendation', config.fda_recommendation || defaultConfig.fda_recommendation],
+      ['doctor_name', config.doctor_name || defaultConfig.doctor_name],
+      ['doctor2_name', config.doctor2_name || defaultConfig.doctor2_name],
+      ['doctor2_recommendation', config.doctor2_recommendation || defaultConfig.doctor2_recommendation],
+      ['modal_title', config.modal_title || defaultConfig.modal_title],
+      ['modal_message', config.modal_message || defaultConfig.modal_message],
+      ['modal_continue', config.modal_continue || defaultConfig.modal_continue],
+      ['modal_back', config.modal_back || defaultConfig.modal_back]
+    ])
+  });
+
+  // Apply initial config
+  onConfigChange(defaultConfig);
+</script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f5a62f90027e550',t:'MTc3Nzc2MDE0Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
