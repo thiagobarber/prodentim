@@ -148,24 +148,18 @@
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
  </head>
  <body class="h-full w-full dots-bg overflow-auto">
-  <main class="min-h-full w-full flex items-center justify-center p-3 sm:p-6 md:p-10" style="padding-top: 0; padding-bottom: 0;">
-   <!-- DIALOG CARD -->
-   <div id="dialog-card" class="w-full max-w-2xl bg-white rounded-[20px] sm:rounded-[28px] shadow-2xl overflow-hidden relative flex flex-col" style="box-shadow: 0 30px 70px -20px rgba(31,42,36,0.45); height: 100%; max-height: 100dvh; sm {max-height: auto;}">
-    <!-- Header -->
+  <main class="min-h-full w-full flex items-center justify-center p-3 sm:p-6 md:p-10" style="padding-top: 0; padding-bottom: 0;"><!-- DIALOG CARD -->
+   <div id="dialog-card" class="w-full max-w-2xl bg-white rounded-[20px] sm:rounded-[28px] shadow-2xl overflow-hidden relative flex flex-col" style="box-shadow: 0 30px 70px -20px rgba(31,42,36,0.45); height: 100%; max-height: 100dvh; sm {max-height: auto;}"><!-- Header -->
     <header class="relative px-4 sm:px-7 pt-4 pb-3 sm:pt-5 sm:pb-4 flex-shrink-0" style="background: linear-gradient(135deg, #88B899 0%, #76A686 60%, #5E8B70 100%);">
      <div class="flex items-center justify-between gap-3 sm:gap-4">
       <div class="flex items-center gap-2 sm:gap-3 min-w-0">
-       <div class="relative flex-shrink-0">
-        <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white flex items-center justify-center shadow-md">
-         <i data-lucide="sparkles" class="w-4 h-4 sm:w-5 sm:h-5" style="color: var(--brand-dark);"></i>
-        </div><span class="absolute -bottom-0.5 -right-0.5 w-3 h-3 sm:w-3.5 sm:h-3.5 bg-green-400 border-2 border-white rounded-full"></span>
+       <div class="relative flex-shrink-0"><img src="https://imgur.com/Dq6Dz5P.jpg" alt="Dr. Emma" loading="lazy" class="w-10 h-10 sm:w-11 sm:h-11 rounded-full shadow-md object-cover" onerror="console.error('Image failed to load:', this.src); this.parentElement.innerHTML='<div class=\\'w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white flex items-center justify-center shadow-md\\'>🩺</div>';"> <span class="absolute -bottom-0.5 -right-0.5 w-3 h-3 sm:w-3.5 sm:h-3.5 bg-green-400 border-2 border-white rounded-full"></span>
        </div>
        <div class="text-white min-w-0">
         <div class="font-display font-semibold text-base sm:text-lg leading-tight">
          Dr. Emma
         </div>
-        <div class="text-xs opacity-90 flex items-center gap-1 truncate">
-         <span class="w-1.5 h-1.5 bg-green-300 rounded-full flex-shrink-0"></span> <span class="truncate">Oral Wellness Assistant</span>
+        <div class="text-xs opacity-90 flex items-center gap-1 truncate"><span class="w-1.5 h-1.5 bg-green-300 rounded-full flex-shrink-0"></span> <span class="truncate">Oral Wellness Assistant</span>
         </div>
        </div>
       </div><button id="close-btn" aria-label="Close dialog" class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/15 hover:bg-white/30 flex items-center justify-center text-white transition-colors backdrop-blur-sm border border-white/20 flex-shrink-0"> <i data-lucide="x" class="w-4 h-4 sm:w-5 sm:h-5"></i> </button>
@@ -177,15 +171,12 @@
       <div class="progress-dot" data-step="3"></div>
      </div>
     </header><!-- Chat area -->
-    <section id="chat-area" class="px-3 sm:px-7 py-4 sm:py-6 chat-scroll overflow-y-auto space-y-3 sm:space-y-4 flex-1 min-h-0" style="background: linear-gradient(180deg, #FBFBF8 0%, #F5F3EE 100%);">
-     <!-- Messages injected by JS -->
+    <section id="chat-area" class="px-3 sm:px-7 py-4 sm:py-6 chat-scroll overflow-y-auto space-y-3 sm:space-y-4 flex-1 min-h-0" style="background: linear-gradient(180deg, #FBFBF8 0%, #F5F3EE 100%);"><!-- Messages injected by JS -->
     </section><!-- Options / CTA footer -->
-    <footer id="footer-area" class="px-3 sm:px-7 pb-4 sm:pb-6 pt-2 bg-white border-t border-gray-100 flex-shrink-0 overflow-y-auto max-h-[40%] sm:max-h-none">
-     <!-- Options injected by JS -->
+    <footer id="footer-area" class="px-3 sm:px-7 pb-4 sm:pb-6 pt-2 bg-white border-t border-gray-100 flex-shrink-0 overflow-y-auto max-h-[40%] sm:max-h-none"><!-- Options injected by JS -->
     </footer><!-- Closed state overlay -->
     <div id="closed-overlay" class="hidden absolute inset-0 bg-white/95 backdrop-blur-sm flex-col items-center justify-center p-5 sm:p-8 text-center">
-     <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mb-3 sm:mb-4" style="background: var(--brand); opacity: 0.15;">
-      <i data-lucide="message-circle-heart" class="w-7 h-7 sm:w-8 sm:h-8" style="color: var(--brand-dark);"></i>
+     <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mb-3 sm:mb-4" style="background: var(--brand); opacity: 0.15;"><i data-lucide="message-circle-heart" class="w-7 h-7 sm:w-8 sm:h-8" style="color: var(--brand-dark);"></i>
      </div>
      <h3 class="font-display text-xl sm:text-2xl font-bold mb-2 leading-tight">Wait — one last thing</h3>
      <p class="text-gray-600 mb-4 sm:mb-5 max-w-sm text-sm sm:text-base">Before you go, thousands have already fixed their bad breath naturally. Don't miss your chance.</p><a href="https://prodentim24.com/text.php#aff=thiagobarber" target="_blank" rel="noopener noreferrer" class="cta-btn text-white font-bold px-5 sm:px-7 py-3 sm:py-3.5 rounded-full inline-flex items-center gap-2 text-sm sm:text-base"> <i data-lucide="gift" class="w-4 h-4 sm:w-5 sm:h-5"></i> <span>See the Special Offer</span> </a> <button id="reopen-btn" class="mt-3 text-xs sm:text-sm text-gray-500 hover:text-gray-700 underline">Reopen the chat</button>
@@ -485,5 +476,5 @@
   // Start the flow
   renderStep(0);
 </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f5a853dd3024b2e',t:'MTc3Nzc2MTU1MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f6c193cc363ac02',t:'MTc3Nzk0NTg3MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
