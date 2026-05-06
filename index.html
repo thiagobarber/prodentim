@@ -3,478 +3,154 @@
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Finally Fix Your Bad Breath — ProDentim</title>
-  <script src="/_sdk/element_sdk.js"></script>
+  <title>Prodentim</title>
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;0,900;1,400&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&amp;family=DM+Sans:wght@400;500;700&amp;family=Space+Grotesk:wght@700&amp;display=swap" rel="stylesheet">
   <style>
-  :root {
-    --brand: #76A686;
-    --brand-dark: #4a7359;
-    --brand-deeper: #2f4a3a;
-    --cream: #FBF7EE;
-    --coral: #FF6B4A;
-    --coral-dark: #E54A28;
-    --ink: #1F2A24;
-  }
-  html, body { height: 100%; width: 100%; }
-  body {
-    font-family: 'Manrope', system-ui, sans-serif;
-    background: var(--brand);
-    color: var(--ink);
-  }
-  .font-display { font-family: 'Fraunces', Georgia, serif; font-optical-sizing: auto; }
-  .italic-serif { font-family: 'Fraunces', Georgia, serif; font-style: italic; }
-
-  /* Decorative dotted background */
-  .dots-bg {
-    background-image: radial-gradient(circle, rgba(255,255,255,0.18) 1.2px, transparent 1.2px);
-    background-size: 22px 22px;
-  }
-
-  /* Mobile optimization */
-  @media (max-width: 640px) {
-    body { font-size: 14px; }
-    html, body { padding: 0; margin: 0; width: 100vw; height: 100dvh; }
-  }
-
-  /* Animations */
-  @keyframes floatGentle {
-    0%, 100% { transform: translateY(0px) rotate(-2deg); }
-    50% { transform: translateY(-8px) rotate(-2deg); }
-  }
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes slideInRight {
-    from { opacity: 0; transform: translateX(30px); }
-    to { opacity: 1; transform: translateX(0); }
-  }
-  @keyframes pulseGlow {
-    0%, 100% { box-shadow: 0 10px 30px -8px rgba(229,74,40,0.55), 0 0 0 0 rgba(255,107,74,0.4); }
-    50% { box-shadow: 0 10px 30px -8px rgba(229,74,40,0.7), 0 0 0 12px rgba(255,107,74,0); }
-  }
-  @keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-4px); }
-    75% { transform: translateX(4px); }
-  }
-  @keyframes typing {
-    0% { opacity: 0.3; transform: translateY(0); }
-    50% { opacity: 1; transform: translateY(-3px); }
-    100% { opacity: 0.3; transform: translateY(0); }
-  }
-
-  .float-gentle { animation: floatGentle 5s ease-in-out infinite; }
-  .animate-fade-in-up { animation: fadeInUp 0.5s ease-out forwards; }
-  .animate-slide-in { animation: slideInRight 0.45s ease-out forwards; }
-  .pulse-glow { animation: pulseGlow 2.4s ease-in-out infinite; }
-
-  .typing-dot {
-    animation: typing 1.2s infinite ease-in-out;
-  }
-  .typing-dot:nth-child(2) { animation-delay: 0.2s; }
-  .typing-dot:nth-child(3) { animation-delay: 0.4s; }
-
-  /* Message bubbles */
-  .bubble-bot {
-    background: #FFFFFF;
-    border-radius: 22px 22px 22px 4px;
-    box-shadow: 0 4px 14px rgba(31,42,36,0.08);
-  }
-  .bubble-user {
-    background: linear-gradient(135deg, #88B899, var(--brand-dark));
-    color: white;
-    border-radius: 22px 22px 4px 22px;
-    box-shadow: 0 4px 14px rgba(47,74,58,0.25);
-  }
-
-  /* Answer buttons */
-  .answer-btn {
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    background: white;
-    border: 2px solid transparent;
-  }
-  .answer-btn:hover {
-    transform: translateY(-2px);
-    border-color: var(--brand);
-    box-shadow: 0 8px 20px rgba(31,42,36,0.12);
-  }
-  .answer-btn:active { transform: translateY(0); }
-
-  /* CTA */
-  .cta-btn {
-    background: linear-gradient(180deg, #FF7A5C 0%, var(--coral) 50%, var(--coral-dark) 100%);
-    box-shadow: 0 10px 26px -8px rgba(229,74,40,0.5), inset 0 1px 0 rgba(255,255,255,0.3);
-    transition: transform 0.2s ease, box-shadow 0.3s ease;
-  }
-  .cta-btn:hover {
-    transform: translateY(-2px) scale(1.01);
-  }
-
-  /* Custom scrollbar for chat area */
-  .chat-scroll::-webkit-scrollbar { width: 6px; }
-  .chat-scroll::-webkit-scrollbar-track { background: transparent; }
-  .chat-scroll::-webkit-scrollbar-thumb { background: rgba(118,166,134,0.3); border-radius: 3px; }
-
-  .badge-tag {
-    background: rgba(255,255,255,0.15);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.25);
-  }
-
-  .product-card {
-    background: linear-gradient(160deg, #FBF7EE 0%, #F0E8D6 100%);
-  }
-
-  .star-filled { color: #FFB547; }
-
-  /* Progress dots */
-  .progress-dot {
-    width: 8px; height: 8px; border-radius: 50%;
-    background: rgba(255,255,255,0.3);
-    transition: all 0.3s;
-  }
-  .progress-dot.active { background: white; width: 28px; border-radius: 4px; }
-  .progress-dot.done { background: rgba(255,255,255,0.7); }
-
-  @media (max-width: 640px) {
-    .bubble-bot, .bubble-user { font-size: 15px; }
-  }
-</style>
+    .pulse-btn { animation: pulse 2s infinite; }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    .fade-in { animation: fadeIn 0.8s ease-out forwards; opacity: 0; }
+    @keyframes fadeIn { to { opacity: 1; } }
+  </style>
   <style>body { box-sizing: border-box; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
  </head>
- <body class="h-full w-full dots-bg overflow-auto">
-  <main class="min-h-full w-full flex items-center justify-center p-3 sm:p-6 md:p-10" style="padding-top: 0; padding-bottom: 0;"><!-- DIALOG CARD -->
-   <div id="dialog-card" class="w-full max-w-2xl bg-white rounded-[20px] sm:rounded-[28px] shadow-2xl overflow-hidden relative flex flex-col" style="box-shadow: 0 30px 70px -20px rgba(31,42,36,0.45); height: 100%; max-height: 100dvh; sm {max-height: auto;}"><!-- Header -->
-    <header class="relative px-4 sm:px-7 pt-4 pb-3 sm:pt-5 sm:pb-4 flex-shrink-0" style="background: linear-gradient(135deg, #88B899 0%, #76A686 60%, #5E8B70 100%);">
-     <div class="flex items-center justify-between gap-3 sm:gap-4">
-      <div class="flex items-center gap-2 sm:gap-3 min-w-0">
-       <div class="relative flex-shrink-0"><img src="https://imgur.com/Dq6Dz5P.jpg" alt="Dr. Emma" loading="lazy" class="w-10 h-10 sm:w-11 sm:h-11 rounded-full shadow-md object-cover" onerror="console.error('Image failed to load:', this.src); this.parentElement.innerHTML='<div class=\\'w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white flex items-center justify-center shadow-md\\'>🩺</div>';"> <span class="absolute -bottom-0.5 -right-0.5 w-3 h-3 sm:w-3.5 sm:h-3.5 bg-green-400 border-2 border-white rounded-full"></span>
-       </div>
-       <div class="text-white min-w-0">
-        <div class="font-display font-semibold text-base sm:text-lg leading-tight">
-         Dr. Emma
-        </div>
-        <div class="text-xs opacity-90 flex items-center gap-1 truncate"><span class="w-1.5 h-1.5 bg-green-300 rounded-full flex-shrink-0"></span> <span class="truncate">Oral Wellness Assistant</span>
-        </div>
-       </div>
-      </div><button id="close-btn" aria-label="Close dialog" class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/15 hover:bg-white/30 flex items-center justify-center text-white transition-colors backdrop-blur-sm border border-white/20 flex-shrink-0"> <i data-lucide="x" class="w-4 h-4 sm:w-5 sm:h-5"></i> </button>
-     </div><!-- Progress indicator -->
-     <div id="progress-bar" class="flex items-center gap-1 sm:gap-1.5 mt-3 sm:mt-4">
-      <div class="progress-dot active" data-step="0"></div>
-      <div class="progress-dot" data-step="1"></div>
-      <div class="progress-dot" data-step="2"></div>
-      <div class="progress-dot" data-step="3"></div>
-     </div>
-    </header><!-- Chat area -->
-    <section id="chat-area" class="px-3 sm:px-7 py-4 sm:py-6 chat-scroll overflow-y-auto space-y-3 sm:space-y-4 flex-1 min-h-0" style="background: linear-gradient(180deg, #FBFBF8 0%, #F5F3EE 100%);"><!-- Messages injected by JS -->
-    </section><!-- Options / CTA footer -->
-    <footer id="footer-area" class="px-3 sm:px-7 pb-4 sm:pb-6 pt-2 bg-white border-t border-gray-100 flex-shrink-0 overflow-y-auto max-h-[40%] sm:max-h-none"><!-- Options injected by JS -->
-    </footer><!-- Closed state overlay -->
-    <div id="closed-overlay" class="hidden absolute inset-0 bg-white/95 backdrop-blur-sm flex-col items-center justify-center p-5 sm:p-8 text-center">
-     <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mb-3 sm:mb-4" style="background: var(--brand); opacity: 0.15;"><i data-lucide="message-circle-heart" class="w-7 h-7 sm:w-8 sm:h-8" style="color: var(--brand-dark);"></i>
-     </div>
-     <h3 class="font-display text-xl sm:text-2xl font-bold mb-2 leading-tight">Wait — one last thing</h3>
-     <p class="text-gray-600 mb-4 sm:mb-5 max-w-sm text-sm sm:text-base">Before you go, thousands have already fixed their bad breath naturally. Don't miss your chance.</p><a href="https://prodentim24.com/text.php#aff=thiagobarber" target="_blank" rel="noopener noreferrer" class="cta-btn text-white font-bold px-5 sm:px-7 py-3 sm:py-3.5 rounded-full inline-flex items-center gap-2 text-sm sm:text-base"> <i data-lucide="gift" class="w-4 h-4 sm:w-5 sm:h-5"></i> <span>See the Special Offer</span> </a> <button id="reopen-btn" class="mt-3 text-xs sm:text-sm text-gray-500 hover:text-gray-700 underline">Reopen the chat</button>
+ <body class="h-full">
+  <div id="app" class="w-full h-full overflow-auto" style="background-color: #76A686;">
+   <!-- Top Bar with Logo and CTA -->
+   <header class="w-full flex items-center justify-between px-6 py-4 sticky top-0 z-50" style="background-color: #007953; backdrop-filter: blur(8px);">
+    <h1 id="brand-title" class="text-2xl md:text-3xl font-bold" style="font-family: 'Playfair Display', serif; color: #ffffff;">Prodentim</h1><a href="https://prodentim24.com/text.php" target="_blank" rel="noopener noreferrer" class="pulse-btn px-5 py-2.5 rounded-full text-white font-bold text-sm md:text-base shadow-lg hover:shadow-xl transition-all" style="background-color: #d32f2f; font-family: 'DM Sans', sans-serif;"> GET YOURS NOW → </a>
+   </header><!-- Hero Section -->
+   <section class="w-full max-w-4xl mx-auto px-6 pt-8 pb-6 text-center fade-in" style="animation-delay: 0.2s;">
+    <div class="inline-block px-4 py-1.5 rounded-full text-sm font-bold mb-4" style="background-color: #c8e6c9; color: #1b5e20; font-family: 'DM Sans', sans-serif;">
+     ⚠️ LIMITED TIME OFFER — 80% OFF TODAY
     </div>
-   </div>
-  </main>
+    <h2 id="main-headline" class="text-3xl md:text-5xl lg:text-6xl leading-tight mb-4" style="font-family: 'Space Grotesk', sans-serif; color: #ffffff; font-weight: 700;">Finally End Bad Breath, Bleeding Gums &amp; Tooth Decay — Naturally</h2>
+    <p id="sub-headline" class="text-lg md:text-xl max-w-2xl mx-auto mb-8" style="font-family: 'DM Sans', sans-serif; color: #ffffff;">Discover the breakthrough probiotic formula trusted by 67,000+ people to restore oral health from the inside out.</p>
+   </section><!-- Product Image -->
+   <section class="w-full max-w-md mx-auto px-6 pb-8 fade-in" style="animation-delay: 0.4s;">
+    <div class="relative rounded-3xl p-8 flex items-center justify-center" style="background: linear-gradient(135deg, #a5d6a7 0%, #66bb6a 100%); min-height: 280px;">
+     <img src="https://i.imgur.com/SP2qwLr.png" alt="Prodentim Product" loading="eager" style="max-width: 100%; max-height: 230px; object-fit: contain;" onerror="console.error('Image failed to load:', this.src); this.style.background='#e8f5e9'; this.alt='Product image unavailable';">
+     <div class="absolute top-3 right-3 bg-white rounded-full px-3 py-1 shadow-md">
+      <span class="text-xs font-bold" style="color: #d32f2f;">🔥 BEST SELLER</span>
+     </div>
+    </div>
+   </section><!-- Main CTA -->
+   <section class="w-full max-w-md mx-auto px-6 pb-10 text-center fade-in" style="animation-delay: 0.6s;">
+    <a id="main-cta" href="https://prodentim24.com/text.php" target="_blank" rel="noopener noreferrer" class="pulse-btn inline-block w-full px-8 py-5 rounded-full text-white text-xl font-bold shadow-2xl hover:shadow-3xl transition-all" style="background-color: #d32f2f; font-family: 'DM Sans', sans-serif;"> 👉 YES! I WANT HEALTHY TEETH &amp; FRESH BREATH </a>
+    <p class="mt-3 text-sm" style="color: #388e3c; font-family: 'DM Sans', sans-serif;">✅ 60-Day Money Back Guarantee • Free Shipping</p>
+   </section><!-- Certifications -->
+   <section class="w-full max-w-3xl mx-auto px-6 pb-10 fade-in" style="animation-delay: 0.8s;">
+    <h3 class="text-center text-lg font-bold mb-6" style="color: #1b5e20; font-family: 'DM Sans', sans-serif;">Certified &amp; Trusted</h3>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+     <div class="bg-white rounded-2xl p-4 text-center shadow-sm">
+      <p class="text-xs font-bold" style="color: #1b5e20;">✓ FDA Registered Facility</p>
+     </div>
+     <div class="bg-white rounded-2xl p-4 text-center shadow-sm">
+      <p class="text-xs font-bold" style="color: #1b5e20;">✓ 100% Natural</p>
+     </div>
+     <div class="bg-white rounded-2xl p-4 text-center shadow-sm">
+      <p class="text-xs font-bold" style="color: #1b5e20;">✓ GMP Certified</p>
+     </div>
+     <div class="bg-white rounded-2xl p-4 text-center shadow-sm">
+      <p class="text-xs font-bold" style="color: #1b5e20;">✓ Made in USA</p>
+     </div>
+    </div>
+   </section><!-- Medical Recommendations -->
+   <section class="w-full max-w-3xl mx-auto px-6 pb-16 fade-in" style="animation-delay: 1s;">
+    <h3 class="text-center text-lg font-bold mb-6" style="color: #1b5e20; font-family: 'DM Sans', sans-serif;">Recommended by Dental Professionals</h3>
+    <div class="space-y-4">
+     <div class="bg-white rounded-2xl p-5 shadow-sm flex gap-4 items-start">
+      <div class="text-3xl font-bold" style="color: #1b5e20;">
+       D
+      </div>
+      <div>
+       <p class="font-bold text-sm" style="color: #1b5e20; font-family: 'DM Sans', sans-serif;">Dr. Sarah Mitchell, DDS</p>
+       <p class="text-sm mt-1" style="color: #455a64; font-family: 'DM Sans', sans-serif;">"I recommend Prodentim to patients struggling with halitosis and gum inflammation. The probiotic strains target the root cause of oral health issues."</p>
+       <div class="mt-2 text-yellow-500 text-xs">
+        ★★★★★
+       </div>
+      </div>
+     </div>
+     <div class="bg-white rounded-2xl p-5 shadow-sm flex gap-4 items-start">
+      <div class="text-3xl font-bold" style="color: #1b5e20;">
+       D
+      </div>
+      <div>
+       <p class="font-bold text-sm" style="color: #1b5e20; font-family: 'DM Sans', sans-serif;">Dr. James Crawford, Periodontist</p>
+       <p class="text-sm mt-1" style="color: #455a64; font-family: 'DM Sans', sans-serif;">"After years of research, oral probiotics are the future of dental care. Prodentim contains clinically studied strains that support gum tissue and fresh breath."</p>
+       <div class="mt-2 text-yellow-500 text-xs">
+        ★★★★★
+       </div>
+      </div>
+     </div>
+     <div class="bg-white rounded-2xl p-5 shadow-sm flex gap-4 items-start">
+      <div class="text-3xl font-bold" style="color: #1b5e20;">
+       D
+      </div>
+      <div>
+       <p class="font-bold text-sm" style="color: #1b5e20; font-family: 'DM Sans', sans-serif;">Dr. Elena Rodriguez, Oral Health Researcher</p>
+       <p class="text-sm mt-1" style="color: #455a64; font-family: 'DM Sans', sans-serif;">"Clinical trials show that the 3.5 billion CFU blend in Prodentim significantly reduces harmful bacteria responsible for tooth decay and bad breath."</p>
+       <div class="mt-2 text-yellow-500 text-xs">
+        ★★★★★
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+  </div>
   <script>
-  lucide.createIcons();
+    lucide.createIcons();
 
-  // Initialize Element SDK (optional - keeping minimal config)
-  if (window.elementSdk) {
+    const defaultConfig = {
+      headline_title: "Finally End Bad Breath, Bleeding Gums & Tooth Decay — Naturally",
+      subheadline: "Discover the breakthrough probiotic formula trusted by 67,000+ people to restore oral health from the inside out.",
+      cta_text: "👉 YES! I WANT HEALTHY TEETH & FRESH BREATH",
+      background_color: "#76A686",
+      text_color: "#1b5e20",
+      cta_color: "#d32f2f",
+      surface_color: "#ffffff",
+      font_family: "Playfair Display",
+      font_size: 16
+    };
+
+    function applyConfig(config) {
+      const c = { ...defaultConfig, ...config };
+      document.getElementById('main-headline').textContent = c.headline_title;
+      document.getElementById('sub-headline').textContent = c.subheadline;
+      document.getElementById('main-cta').textContent = c.cta_text;
+      document.getElementById('app').style.backgroundColor = c.background_color;
+      document.querySelectorAll('[style*="color: #1b5e20"], [style*="color:#1b5e20"]').forEach(el => {
+        el.style.color = c.text_color;
+      });
+      document.getElementById('main-cta').style.backgroundColor = c.cta_color;
+    }
+
     window.elementSdk.init({
-      defaultConfig: {},
-      onConfigChange: async () => {},
-      mapToCapabilities: () => ({ recolorables: [], borderables: [], fontEditable: undefined, fontSizeable: undefined }),
-      mapToEditPanelValues: () => new Map()
+      defaultConfig,
+      onConfigChange: async (config) => { applyConfig(config); },
+      mapToCapabilities: (config) => ({
+        recolorables: [
+          { get: () => config.background_color || defaultConfig.background_color, set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); } },
+          { get: () => config.surface_color || defaultConfig.surface_color, set: (v) => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
+          { get: () => config.text_color || defaultConfig.text_color, set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
+          { get: () => config.cta_color || defaultConfig.cta_color, set: (v) => { config.cta_color = v; window.elementSdk.setConfig({ cta_color: v }); } }
+        ],
+        borderables: [],
+        fontEditable: { get: () => config.font_family || defaultConfig.font_family, set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); } },
+        fontSizeable: { get: () => config.font_size || defaultConfig.font_size, set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); } }
+      }),
+      mapToEditPanelValues: (config) => new Map([
+        ["headline_title", config.headline_title || defaultConfig.headline_title],
+        ["subheadline", config.subheadline || defaultConfig.subheadline],
+        ["cta_text", config.cta_text || defaultConfig.cta_text]
+      ])
     });
-  }
-
-  const CTA_URL = "https://prodentim24.com/text.php#aff=thiagobarber";
-  const PRODUCT_IMG = "https://i.imgur.com/gt5fJfa.png";
-
-  const chatArea = document.getElementById('chat-area');
-  const footerArea = document.getElementById('footer-area');
-  const progressDots = document.querySelectorAll('.progress-dot');
-
-  // Dialog flow — focused on pain → agitation → gain
-  const flow = [
-    {
-      // Q1 - PAIN: Identify the struggle
-      bot: [
-        "Hi there 👋 I noticed you searched for help with <b>halitosis</b>.",
-        "You're not alone — <b>1 in 4 adults</b> silently struggle with chronic bad breath. Can I ask you 3 quick questions?",
-        "First: <b>How is bad breath affecting your daily life?</b>"
-      ],
-      options: [
-        { emoji: "😔", text: "I avoid close conversations", value: "social" },
-        { emoji: "💔", text: "It's hurting my relationships", value: "relationships" },
-        { emoji: "😰", text: "I feel embarrassed at work", value: "work" },
-        { emoji: "🪥", text: "Nothing I try seems to work", value: "tried" }
-      ]
-    },
-    {
-      // Q2 - AGITATION: What have they tried?
-      bot: [
-        "I completely understand — and it's <i>not your fault</i>. 💚",
-        "Most people don't realize this: <b>brushing alone can't fix halitosis</b>. The real cause lives deeper.",
-        "<b>What have you already tried?</b>"
-      ],
-      options: [
-        { emoji: "🍬", text: "Mints & mouthwash (temporary)", value: "mints" },
-        { emoji: "🪥", text: "Brushing 3+ times a day", value: "brushing" },
-        { emoji: "🦷", text: "Visited the dentist — no luck", value: "dentist" },
-        { emoji: "💊", text: "Supplements or home remedies", value: "remedies" }
-      ]
-    },
-    {
-      // Q3 - GAIN: Paint the desired outcome
-      bot: [
-        "That's exactly what I expected. Here's the truth:",
-        "Bad breath starts in your <b>oral microbiome</b> — the good bacteria that keep your mouth balanced. Kill them with alcohol mouthwash, and the problem <i>gets worse</i>. 🔬",
-        "<b>If you could fix this naturally, what would change for you?</b>"
-      ],
-      options: [
-        { emoji: "😊", text: "Smile & talk with total confidence", value: "confidence" },
-        { emoji: "💕", text: "Get close to my partner again", value: "close" },
-        { emoji: "🗣️", text: "Speak up at work without fear", value: "speak" },
-        { emoji: "✨", text: "All of the above", value: "all" }
-      ]
-    },
-    {
-      // REVEAL / CTA
-      reveal: true
-    }
-  ];
-
-  let currentStep = 0;
-
-  function updateProgress(step) {
-    progressDots.forEach((dot, i) => {
-      dot.classList.remove('active', 'done');
-      if (i < step) dot.classList.add('done');
-      else if (i === step) dot.classList.add('active');
-    });
-  }
-
-  function scrollChatToBottom() {
-    chatArea.scrollTo({ top: chatArea.scrollHeight, behavior: 'smooth' });
-  }
-
-  function addTypingIndicator() {
-    const typing = document.createElement('div');
-    typing.id = 'typing-indicator';
-    typing.className = 'flex items-end gap-2 animate-fade-in-up';
-    typing.innerHTML = `
-      <div class="w-8 h-8 rounded-full bg-white shadow-sm flex items-center justify-center flex-shrink-0" style="border: 1.5px solid var(--brand);">
-        <i data-lucide="sparkles" class="w-3.5 h-3.5 sm:w-4 sm:h-4" style="color: var(--brand-dark);"></i>
-      </div>
-      <div class="bubble-bot px-3 sm:px-4 py-2.5 sm:py-3 flex items-center gap-1.5">
-        <span class="typing-dot w-2 h-2 rounded-full bg-gray-400"></span>
-        <span class="typing-dot w-2 h-2 rounded-full bg-gray-400"></span>
-        <span class="typing-dot w-2 h-2 rounded-full bg-gray-400"></span>
-      </div>
-    `;
-    chatArea.appendChild(typing);
-    lucide.createIcons();
-    scrollChatToBottom();
-  }
-
-  function removeTypingIndicator() {
-    const t = document.getElementById('typing-indicator');
-    if (t) t.remove();
-  }
-
-  function addBotMessage(html, delay = 0) {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        const wrap = document.createElement('div');
-        wrap.className = 'flex items-end gap-2 animate-fade-in-up';
-        wrap.innerHTML = `
-          <div class="w-8 h-8 sm:w-8 sm:h-8 rounded-full bg-white shadow-sm flex items-center justify-center flex-shrink-0" style="border: 1.5px solid var(--brand);">
-            <i data-lucide="sparkles" class="w-3.5 h-3.5 sm:w-4 sm:h-4" style="color: var(--brand-dark);"></i>
-          </div>
-          <div class="bubble-bot px-3 sm:px-4 py-2.5 sm:py-3 max-w-[85%] text-[13px] sm:text-[15px] leading-relaxed text-gray-800">${html}</div>
-        `;
-        chatArea.appendChild(wrap);
-        lucide.createIcons();
-        scrollChatToBottom();
-        resolve();
-      }, delay);
-    });
-  }
-
-  function addUserMessage(emoji, text) {
-    const wrap = document.createElement('div');
-    wrap.className = 'flex items-end justify-end gap-2 animate-slide-in';
-    wrap.innerHTML = `
-      <div class="bubble-user px-4 py-2.5 max-w-[80%] text-[15px] font-medium">
-        <span class="mr-1">${emoji}</span>${text}
-      </div>
-    `;
-    chatArea.appendChild(wrap);
-    scrollChatToBottom();
-  }
-
-  async function renderStep(stepIndex) {
-    updateProgress(stepIndex);
-    const step = flow[stepIndex];
-
-    if (step.reveal) {
-      await renderReveal();
-      return;
-    }
-
-    // Clear footer while bot "types"
-    footerArea.innerHTML = '';
-
-    // Show typing + bot messages sequentially
-    for (let i = 0; i < step.bot.length; i++) {
-      addTypingIndicator();
-      await new Promise(r => setTimeout(r, 900));
-      removeTypingIndicator();
-      await addBotMessage(step.bot[i], 50);
-      await new Promise(r => setTimeout(r, 400));
-    }
-
-    // Show options
-    renderOptions(step.options);
-  }
-
-  function renderOptions(options) {
-    footerArea.innerHTML = `
-      <div class="text-[10px] sm:text-xs uppercase tracking-wider text-gray-400 font-semibold mb-2 sm:mb-2.5 flex items-center gap-1.5">
-        <i data-lucide="mouse-pointer-click" class="w-3 h-3 sm:w-3.5 sm:h-3.5"></i>
-        <span>Tap your answer</span>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-2.5" id="options-grid"></div>
-    `;
-    const grid = document.getElementById('options-grid');
-    options.forEach((opt, idx) => {
-      const btn = document.createElement('button');
-      btn.className = 'answer-btn text-left rounded-xl sm:rounded-2xl px-3 sm:px-4 py-2.5 sm:py-3 flex items-center gap-2 sm:gap-3 text-gray-800 font-medium text-[13px] sm:text-[15px] opacity-0';
-      btn.style.animation = `fadeInUp 0.4s ease-out ${idx * 0.07}s forwards`;
-      btn.innerHTML = `
-        <span class="text-xl sm:text-2xl flex-shrink-0">${opt.emoji}</span>
-        <span class="flex-1 min-w-0">${opt.text}</span>
-        <i data-lucide="chevron-right" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-gray-400 flex-shrink-0"></i>
-      `;
-      btn.addEventListener('click', () => handleAnswer(opt));
-      grid.appendChild(btn);
-    });
-    lucide.createIcons();
-  }
-
-  async function handleAnswer(opt) {
-    // Disable all buttons
-    document.querySelectorAll('.answer-btn').forEach(b => b.style.pointerEvents = 'none');
-    addUserMessage(opt.emoji, opt.text);
-    await new Promise(r => setTimeout(r, 500));
-    currentStep++;
-    renderStep(currentStep);
-  }
-
-  async function renderReveal() {
-    updateProgress(3);
-    footerArea.innerHTML = '';
-
-    addTypingIndicator();
-    await new Promise(r => setTimeout(r, 1100));
-    removeTypingIndicator();
-    await addBotMessage("Perfect. Based on your answers, I know <b>exactly</b> what will work for you. 🎯", 50);
-    await new Promise(r => setTimeout(r, 700));
-
-    addTypingIndicator();
-    await new Promise(r => setTimeout(r, 900));
-    removeTypingIndicator();
-    await addBotMessage("Meet <b>ProDentim</b> — a doctor-formulated <i>probiotic</i> with <b>3.5 billion good bacteria</b> that restores your oral microbiome and <b>eliminates bad breath at the source</b>. 🦷✨", 50);
-    await new Promise(r => setTimeout(r, 500));
-
-    // Reveal product card in footer
-    footerArea.innerHTML = `
-      <div class="product-card rounded-xl sm:rounded-2xl p-3 sm:p-5 mb-3 sm:mb-4 animate-fade-in-up" style="border: 1px solid rgba(118,166,134,0.25);">
-        <div class="flex flex-col sm:flex-row items-center sm:items-start gap-3 sm:gap-4">
-          <div class="relative flex-shrink-0">
-            <div class="w-20 h-20 sm:w-28 sm:h-28 rounded-lg sm:rounded-xl bg-white flex items-center justify-center overflow-hidden float-gentle" style="box-shadow: 0 8px 20px rgba(47,74,58,0.15);">
-              <img src="${PRODUCT_IMG}" alt="ProDentim bottle" loading="lazy" class="w-full h-full object-contain p-1" onerror="console.error('Image failed to load:', this.src); this.style.display='none'; this.parentElement.innerHTML='<div style=\\'font-family:Fraunces,serif;color:#2f4a3a;font-weight:700;text-align:center;padding:8px;font-size:14px;\\'>ProDentim</div>';">
-            </div>
-            <div class="absolute -top-2 -right-2 bg-red-500 text-white text-[9px] sm:text-[10px] font-bold px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full shadow-md transform rotate-6">
-              -50%
-            </div>
-          </div>
-          <div class="flex-1 min-w-0 text-center sm:text-left">
-            <div class="flex items-center gap-1 mb-1 justify-center sm:justify-start">
-              <i data-lucide="star" class="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-current star-filled"></i>
-              <i data-lucide="star" class="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-current star-filled"></i>
-              <i data-lucide="star" class="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-current star-filled"></i>
-              <i data-lucide="star" class="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-current star-filled"></i>
-              <i data-lucide="star" class="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-current star-filled"></i>
-              <span class="text-[10px] sm:text-xs text-gray-500 ml-1 font-semibold">95K+ reviews</span>
-            </div>
-            <h3 class="font-display font-bold text-base sm:text-xl leading-tight" style="color: var(--ink);">ProDentim <span class="italic-serif font-normal text-sm sm:text-base">Probiotic</span></h3>
-            <p class="text-[12px] sm:text-xs text-gray-600 mt-1 leading-snug">
-              <i data-lucide="check-circle-2" class="w-3 h-3 sm:w-3.5 sm:h-3.5 inline" style="color: var(--brand-dark);"></i>
-              Ends bad breath • Whitens teeth • Soothes gums
-            </p>
-            <div class="flex items-center justify-center sm:justify-start gap-2 mt-1.5">
-              <span class="font-display font-bold text-lg sm:text-xl" style="color: var(--coral-dark);">$49</span>
-              <span class="text-xs sm:text-sm text-gray-400 line-through">$99</span>
-              <span class="text-[9px] sm:text-[10px] font-bold text-white px-1 sm:px-1.5 py-0.5 rounded" style="background: var(--coral);">SAVE 50%</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <a href="${CTA_URL}" target="_blank" rel="noopener noreferrer" class="cta-btn w-full text-white font-bold text-sm sm:text-base py-3.5 sm:py-4 rounded-lg sm:rounded-2xl flex items-center justify-center gap-2 pulse-glow animate-fade-in-up" style="animation-delay: 0.15s; animation-fill-mode: both;">
-        <i data-lucide="shield-check" class="w-4 h-4 sm:w-5 sm:h-5"></i>
-        <span>Yes! Fix My Bad Breath Now</span>
-        <i data-lucide="arrow-right" class="w-4 h-4 sm:w-5 sm:h-5"></i>
-      </a>
-
-      <div class="flex items-center justify-center gap-2 sm:gap-4 mt-2.5 sm:mt-3 text-[10px] sm:text-[11px] text-gray-500 flex-wrap animate-fade-in-up" style="animation-delay: 0.25s; animation-fill-mode: both;">
-        <span class="flex items-center gap-1 whitespace-nowrap"><i data-lucide="truck" class="w-3 h-3 sm:w-3.5 sm:h-3.5"></i> <span class="hidden sm:inline">Free</span> Shipping</span>
-        <span class="hidden sm:inline text-gray-300">•</span>
-        <span class="flex items-center gap-1 whitespace-nowrap"><i data-lucide="badge-check" class="w-3 h-3 sm:w-3.5 sm:h-3.5"></i> <span class="hidden sm:inline">60-Day</span> Guarantee</span>
-        <span class="hidden sm:inline text-gray-300">•</span>
-        <span class="flex items-center gap-1 whitespace-nowrap"><i data-lucide="lock" class="w-3 h-3 sm:w-3.5 sm:h-3.5"></i> Secure</span>
-      </div>
-
-      <p class="text-center text-[10px] sm:text-[11px] text-gray-400 mt-2 italic animate-fade-in-up" style="animation-delay: 0.35s; animation-fill-mode: both;">
-        ⏰ Limited stock — offer expires when you close this page
-      </p>
-    `;
-    lucide.createIcons();
-    scrollChatToBottom();
-  }
-
-  // Close button logic
-  const closeBtn = document.getElementById('close-btn');
-  const overlay = document.getElementById('closed-overlay');
-  const reopenBtn = document.getElementById('reopen-btn');
-
-  closeBtn.addEventListener('click', () => {
-    overlay.classList.remove('hidden');
-    overlay.classList.add('flex');
-    lucide.createIcons();
-    // Shake animation for dialog
-    const card = document.getElementById('dialog-card');
-    card.style.animation = 'shake 0.4s';
-    setTimeout(() => card.style.animation = '', 400);
-  });
-
-  reopenBtn.addEventListener('click', () => {
-    overlay.classList.add('hidden');
-    overlay.classList.remove('flex');
-  });
-
-  // Start the flow
-  renderStep(0);
-</script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f6c193cc363ac02',t:'MTc3Nzk0NTg3MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f776cc1278af199',t:'MTc3ODA2NDYzNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
