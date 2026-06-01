@@ -1,115 +1,264 @@
-<!doctype html>
-<html lang="en" class="h-full">
- <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prodentim</title>
-  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
-  <script src="/_sdk/element_sdk.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&amp;family=DM+Sans:wght@400;500;700&amp;family=Space+Grotesk:wght@700&amp;display=swap" rel="stylesheet">
-  <style>
-    .pulse-btn { animation: pulse 2s infinite; }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-    .fade-in { animation: fadeIn 0.8s ease-out forwards; opacity: 0; }
-    @keyframes fadeIn { to { opacity: 1; } }
-  </style>
-  <style>body { box-sizing: border-box; }</style>
-  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
- </head>
- <body class="h-full">
-  <div id="app" class="w-full h-full overflow-auto" style="background-color: #76A686;">
-   <!-- Top Bar with Logo and CTA -->
-   <header class="w-full flex items-center justify-between px-6 py-4 sticky top-0 z-50" style="background-color: #007953; backdrop-filter: blur(8px);">
-    <h1 id="brand-title" class="text-2xl md:text-3xl font-bold" style="font-family: 'Playfair Display', serif; color: #ffffff;">Prodentim</h1><a href="https://prodentim24.com/text.php" target="_blank" rel="noopener noreferrer" class="pulse-btn px-5 py-2.5 rounded-full text-white font-bold text-sm md:text-base shadow-lg hover:shadow-xl transition-all" style="background-color: #d32f2f; font-family: 'DM Sans', sans-serif;"> GET YOURS NOW → </a>
-   </header><!-- Hero Section -->
-   <section class="w-full max-w-4xl mx-auto px-6 pt-8 pb-6 text-center fade-in" style="animation-delay: 0.2s;">
-    <div class="inline-block px-4 py-1.5 rounded-full text-sm font-bold mb-4" style="background-color: #c8e6c9; color: #1b5e20; font-family: 'DM Sans', sans-serif;">
-     ⚠️ LIMITED TIME OFFER — 80% OFF TODAY
-    </div>
-    <h2 id="main-headline" class="text-3xl md:text-5xl lg:text-6xl leading-tight mb-4" style="font-family: 'Space Grotesk', sans-serif; color: #ffffff; font-weight: 700;">Finally End Bad Breath &amp; Tooth Decay — Naturally</h2>
-    <p id="sub-headline" class="text-lg md:text-xl max-w-2xl mx-auto mb-8" style="font-family: 'DM Sans', sans-serif; color: #ffffff;">Discover the breakthrough probiotic formula trusted by 67,000+ people to restore oral health from the inside out.</p>
-   </section><!-- Product Image -->
-   <section class="w-full max-w-md mx-auto px-6 pb-8 fade-in" style="animation-delay: 0.4s;">
-    <div class="relative rounded-3xl p-8 flex items-center justify-center" style="background: linear-gradient(135deg, #a5d6a7 0%, #66bb6a 100%); min-height: 280px;">
-     <img src="https://i.imgur.com/SP2qwLr.png" alt="Prodentim Product" loading="eager" style="max-width: 100%; max-height: 230px; object-fit: contain;" onerror="console.error('Image failed to load:', this.src); this.style.background='#e8f5e9'; this.alt='Product image unavailable';">
-     <div class="absolute top-3 right-3 bg-white rounded-full px-3 py-1 shadow-md">
-      <span class="text-xs font-bold" style="color: #d32f2f;">🔥 BEST SELLER</span>
-     </div>
-    </div>
-   </section><!-- Main CTA -->
-   <section class="w-full max-w-md mx-auto px-6 pb-10 text-center fade-in" style="animation-delay: 0.6s;">
-    <a id="main-cta" href="https://prodentim24.com/text.php" target="_blank" rel="noopener noreferrer" class="pulse-btn inline-block w-full px-8 py-5 rounded-full text-white text-xl font-bold shadow-2xl hover:shadow-3xl transition-all" style="background-color: #d32f2f; font-family: 'DM Sans', sans-serif;"> 👉 YES! I WANT HEALTHY TEETH &amp; FRESH BREATH </a>
-    <p class="mt-3 text-sm" style="color: #388e3c; font-family: 'DM Sans', sans-serif;">✅ 60-Day Money Back Guarantee • Free Shipping</p>
-   </section><!-- Certifications -->
-   <section class="w-full max-w-3xl mx-auto px-6 pb-10 fade-in" style="animation-delay: 0.8s;">
-    <h3 class="text-center text-lg font-bold mb-6" style="color: #1b5e20; font-family: 'DM Sans', sans-serif;">Certified &amp; Trusted</h3>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-     <div class="bg-white rounded-2xl p-4 text-center shadow-sm">
-      <p class="text-xs font-bold" style="color: #1b5e20;">✓ FDA Registered Facility</p>
-     </div>
-     <div class="bg-white rounded-2xl p-4 text-center shadow-sm">
-      <p class="text-xs font-bold" style="color: #1b5e20;">✓ 100% Natural</p>
-     </div>
-     <div class="bg-white rounded-2xl p-4 text-center shadow-sm">
-      <p class="text-xs font-bold" style="color: #1b5e20;">✓ GMP Certified</p>
-     </div>
-     <div class="bg-white rounded-2xl p-4 text-center shadow-sm">
-      <p class="text-xs font-bold" style="color: #1b5e20;">✓ Made in USA</p>
-     </div>
-    </div>
-   </section>
-  </div>
-  <script>
-    lucide.createIcons();
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Presentation</title>
+    <!-- Google Fonts para uma tipografia limpa e moderna -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Configurações Globais */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    const defaultConfig = {
-      headline_title: "Finally End Bad Breath & Tooth Decay — Naturally",
-      subheadline: "Discover the breakthrough probiotic formula trusted by 67,000+ people to restore oral health from the inside out.",
-      cta_text: "👉 YES! I WANT HEALTHY TEETH & FRESH BREATH",
-      background_color: "#76A686",
-      text_color: "#1b5e20",
-      cta_color: "#d32f2f",
-      surface_color: "#ffffff",
-      font_family: "Playfair Display",
-      font_size: 16
-    };
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #76A686;
+            color: #333333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
 
-    function applyConfig(config) {
-      const c = { ...defaultConfig, ...config };
-      document.getElementById('main-headline').textContent = c.headline_title;
-      document.getElementById('sub-headline').textContent = c.subheadline;
-      document.getElementById('main-cta').textContent = c.cta_text;
-      document.getElementById('app').style.backgroundColor = c.background_color;
-      document.querySelectorAll('[style*="color: #1b5e20"], [style*="color:#1b5e20"]').forEach(el => {
-        el.style.color = c.text_color;
-      });
-      document.getElementById('main-cta').style.backgroundColor = c.cta_color;
-    }
+        .container {
+            width: 100%;
+            max-width: 800px;
+            padding: 20px;
+            text-align: center;
+        }
 
-    window.elementSdk.init({
-      defaultConfig,
-      onConfigChange: async (config) => { applyConfig(config); },
-      mapToCapabilities: (config) => ({
-        recolorables: [
-          { get: () => config.background_color || defaultConfig.background_color, set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); } },
-          { get: () => config.surface_color || defaultConfig.surface_color, set: (v) => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
-          { get: () => config.text_color || defaultConfig.text_color, set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
-          { get: () => config.cta_color || defaultConfig.cta_color, set: (v) => { config.cta_color = v; window.elementSdk.setConfig({ cta_color: v }); } }
-        ],
-        borderables: [],
-        fontEditable: { get: () => config.font_family || defaultConfig.font_family, set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); } },
-        fontSizeable: { get: () => config.font_size || defaultConfig.font_size, set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); } }
-      }),
-      mapToEditPanelValues: (config) => new Map([
-        ["headline_title", config.headline_title || defaultConfig.headline_title],
-        ["subheadline", config.subheadline || defaultConfig.subheadline],
-        ["cta_text", config.cta_text || defaultConfig.cta_text]
-      ])
-    });
-  </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9fab034bc3920123',t:'MTc3ODYwNTU3NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+        /* Headline */
+        .headline {
+            color: #FFFFFF;
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-top: 20px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 600px) {
+            .headline {
+                font-size: 1.6rem;
+            }
+        }
+
+        /* Container do Vídeo (Fake Player) */
+        .video-container {
+            position: relative;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            background-color: #000;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .video-container:hover {
+            transform: scale(1.01);
+        }
+
+        /* Imagem de Fundo do Player */
+        .video-thumbnail {
+            width: 100%;
+            display: block;
+            opacity: 0.9;
+        }
+
+        /* Overlay do Botão de Play */
+        .play-button-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.15);
+        }
+
+        /* Ícone do Play */
+        .play-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            transition: all 0.2s ease;
+        }
+
+        .video-container:hover .play-icon {
+            transform: scale(1.1);
+            background: #ffffff;
+        }
+
+        .play-icon::after {
+            content: '';
+            position: absolute;
+            top: 26px;
+            left: 32px;
+            border-style: solid;
+            border-width: 14px 0 14px 24px;
+            border-color: transparent transparent transparent #76A686;
+        }
+
+        /* Seção de Provas Sociais */
+        .reviews-section {
+            margin-top: 50px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 30px 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+
+        .reviews-title {
+            font-size: 1.5rem;
+            color: #222;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .review-card {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 15px 0;
+        }
+
+        .review-card:last-child {
+            border-bottom: none;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .reviewer-name {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .stars {
+            color: #FFC107;
+            font-size: 1.1rem;
+        }
+
+        .review-text {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .verified-buyer {
+            font-size: 0.8rem;
+            color: #2e7d32;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        /* Rodapé */
+        footer {
+            margin-top: auto;
+            width: 100%;
+            background-color: #222222;
+            color: #aaaaaa;
+            padding: 30px 20px;
+            font-size: 0.8rem;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .footer-links {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: #aaaaaa;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Headline -->
+        <h1 class="headline">If your breath gets worse a few hours after brushing your teeth, watch this video now</h1>
+
+        <!-- Video Player Modal/Container -->
+        <div class="video-container" onclick="window.open('https://prodentim24.com/video.php?aff=thiagobarber', '_blank');">
+            <img src="https://imgur.com/UEhGrSW.jpg" alt="Video Presentation" class="video-thumbnail">
+            <div class="play-button-overlay">
+                <div class="play-icon"></div>
+            </div>
+        </div>
+
+        <!-- Provas Sociais (Reviews) -->
+        <div class="reviews-section">
+            <h2 class="reviews-title">Real Results From Real Users</h2>
+            
+            <!-- Review 1 -->
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="reviewer-name">James R.</span>
+                    <span class="stars">★★★★★</span>
+                </div>
+                <div style="margin-bottom: 5px;"><span class="verified-buyer">✓ Verified Buyer</span></div>
+                <p class="review-text">"I was always self-conscious about my breath just hours after my morning routine. After watching this presentation and following the advice, the difference is night and day. Highly recommend!"</p>
+            </div>
+
+            <!-- Review 2 -->
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="reviewer-name">Sarah M.</span>
+                    <span class="stars">★★★★★</span>
+                </div>
+                <div style="margin-bottom: 5px;"><span class="verified-buyer">✓ Verified Buyer</span></div>
+                <p class="review-text">"Simple, direct, and life-changing information. My teeth feel cleaner, and I feel confident all day long."</p>
+            </div>
+
+            <!-- Review 3 -->
+            <div class="review-card">
+                <div class="review-header">
+                    <span class="reviewer-name">Michael K.</span>
+                    <span class="stars">★★★★★</span>
+                </div>
+                <div style="margin-bottom: 5px;"><span class="verified-buyer">✓ Verified Buyer</span></div>
+                <p class="review-text">"I was skeptical at first, but the science behind this makes total sense. Glad I clicked and watched till the end."</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rodapé com Informações Fiscais e Links de Termos -->
+    <footer>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a> | 
+            <a href="#">Terms of Service</a> | 
+            <a href="#">Contact Support</a>
+        </div>
+        <p>© 2026 ProDentim Presentation. All Rights Reserved.</p>
+        <p style="margin-top: 10px; font-size: 0.75rem; color: #888888;">
+            Disclaimer: The information provided on this site is for informational purposes only and is not intended as a substitute for advice from your physician or other health care professional. ClickBank is the retailer of products on this site. CLICKBANK® is a registered trademark of Click Sales, Inc.
+        </p>
+    </footer>
+
+</body>
 </html>
