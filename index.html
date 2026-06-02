@@ -43,12 +43,6 @@
             text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
         }
 
-        @media (max-width: 600px) {
-            .headline {
-                font-size: 1.6rem;
-            }
-        }
-
         /* Container do Vídeo (Fake Player) */
         .video-container {
             position: relative;
@@ -195,6 +189,52 @@
         .footer-links a:hover {
             text-decoration: underline;
         }
+
+        /* ==========================================================================
+           OTIMIZAÇÃO COMPLETA PARA DISPOSITIVOS MÓVEIS (RESPONSIVIDADE)
+           ========================================================================== */
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+
+            .headline {
+                font-size: 1.5rem;
+                margin-top: 10px;
+                margin-bottom: 20px;
+                line-height: 1.4;
+            }
+
+            /* Ajuste do botão de Play para telas menores */
+            .play-icon {
+                width: 60px;
+                height: 60px;
+            }
+
+            .play-icon::after {
+                top: 18px;
+                left: 24px;
+                border-width: 11px 0 11px 18px;
+            }
+
+            .reviews-section {
+                margin-top: 35px;
+                padding: 20px 15px;
+            }
+
+            .reviews-title {
+                font-size: 1.3rem;
+                margin-bottom: 15px;
+            }
+
+            .review-text {
+                font-size: 0.9rem;
+            }
+
+            footer {
+                padding: 25px 15px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -203,7 +243,7 @@
         <!-- Headline -->
         <h1 class="headline">If your breath gets worse a few hours after brushing your teeth, watch this video now</h1>
 
-        <!-- Video Player Container (Com rastreamento de clique inserido) -->
+        <!-- Video Player Container com Link de Afiliado e Rastreamento Ativos -->
         <div class="video-container" onclick="if(window.va){va.track('Video Click')}; window.open('https://prodentim24.com/video.php?aff=thiagobarber', '_blank');">
             <img src="https://imgur.com/UEhGrSW.jpg" alt="Video Presentation" class="video-thumbnail">
             <div class="play-button-overlay">
@@ -247,7 +287,7 @@
         </div>
     </div>
 
-    <!-- Rodapé com Informações Fiscais e Links de Termos -->
+    <!-- Rodapé com Informações Fiscais -->
     <footer>
         <div class="footer-links">
             <a href="#">Privacy Policy</a> | 
