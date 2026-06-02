@@ -203,8 +203,8 @@
         <!-- Headline -->
         <h1 class="headline">If your breath gets worse a few hours after brushing your teeth, watch this video now</h1>
 
-        <!-- Video Player Modal/Container -->
-        <div class="video-container" onclick="window.open('https://prodentim24.com/video.php?aff=thiagobarber', '_blank');">
+        <!-- Video Player Container (Com rastreamento de clique inserido) -->
+        <div class="video-container" onclick="if(window.va){va.track('Video Click')}; window.open('https://prodentim24.com/video.php?aff=thiagobarber', '_blank');">
             <img src="https://imgur.com/UEhGrSW.jpg" alt="Video Presentation" class="video-thumbnail">
             <div class="play-button-overlay">
                 <div class="play-icon"></div>
@@ -259,6 +259,9 @@
             Disclaimer: The information provided on this site is for informational purposes only and is not intended as a substitute for advice from your physician or other health care professional. ClickBank is the retailer of products on this site. CLICKBANK® is a registered trademark of Click Sales, Inc.
         </p>
     </footer>
+
+    <!-- Script Oficial do Vercel Web Analytics -->
+    <script defer src="/_vercel/insights/script.js"></script>
 
 </body>
 </html>
