@@ -43,8 +43,9 @@
             text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
         }
 
-        /* Container do Vídeo (Fake Player) */
+        /* Container do Vídeo (Fake Player transformado em Link) */
         .video-container {
+            display: block; /* Garante o comportamento de bloco do link */
             position: relative;
             width: 100%;
             border-radius: 12px;
@@ -190,9 +191,7 @@
             text-decoration: underline;
         }
 
-        /* ==========================================================================
-           OTIMIZAÇÃO COMPLETA PARA DISPOSITIVOS MÓVEIS (RESPONSIVIDADE)
-           ========================================================================== */
+        /* Otimização Mobile */
         @media (max-width: 600px) {
             .container {
                 padding: 15px;
@@ -205,7 +204,6 @@
                 line-height: 1.4;
             }
 
-            /* Ajuste do botão de Play para telas menores */
             .play-icon {
                 width: 60px;
                 height: 60px;
@@ -243,13 +241,13 @@
         <!-- Headline -->
         <h1 class="headline">If your breath gets worse a few hours after brushing your teeth, watch this video now</h1>
 
-        <!-- Video Player Container com Link de Afiliado e Rastreamento Ativos -->
-        <div class="video-container" onclick="if(window.va){va.track('Video Click')}; window.open('https://prodentim24.com/video.php?aff=thiagobarber', '_blank');">
+        <!-- Video Player Link corrigido para evitar bloqueios de pop-up -->
+        <a href="https://prodentim24.com/video.php?aff=thiagobarber" target="_blank" class="video-container" onclick="if(window.va){va.track('Video Click')};">
             <img src="https://imgur.com/UEhGrSW.jpg" alt="Video Presentation" class="video-thumbnail">
             <div class="play-button-overlay">
                 <div class="play-icon"></div>
             </div>
-        </div>
+        </a>
 
         <!-- Provas Sociais (Reviews) -->
         <div class="reviews-section">
