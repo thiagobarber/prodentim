@@ -114,9 +114,29 @@
         <p>&copy; 2024 All Rights Reserved.</p>
     </footer>
 
-<!-- Fuga Presell tracking -->
+<!-- PresellPulse tracking -->
 <script>
-(function(){var API_BASE="https://id-preview--f6f53178-1d3f-4ba8-94b5-a85dbe926dae.lovable.app";var PAGE_ID="HIDRALISO";if(!PAGE_ID)return;function getQ(n){try{return new URL(location.href).searchParams.get(n)}catch(e){return null}}function send(p,pl){var u=API_BASE+p,b=JSON.stringify(pl);try{var bl=new Blob([b],{type:"text/plain;charset=UTF-8"});if(navigator.sendBeacon&&navigator.sendBeacon(u,bl))return}catch(e){}try{fetch(u,{method:"POST",headers:{"Content-Type":"text/plain;charset=UTF-8"},body:b,keepalive:true,mode:"cors"})}catch(e){}}var base={pageId:PAGE_ID,referrer:document.referrer||null,href:location.href,path:location.pathname,utm_source:getQ("utm_source"),utm_medium:getQ("utm_medium"),utm_campaign:getQ("utm_campaign")};try{send("/api/public/visit",base)}catch(e){}var last={};function dd(k){var n=Date.now();if(last[k]&&n-last[k]<1500)return false;last[k]=n;return true}function ic(el){if(!el||el.nodeType!==1)return false;var t=(el.tagName||"").toLowerCase();if(el.hasAttribute&&el.hasAttribute("data-cta"))return true;if(el.classList&&el.classList.contains("cta"))return true;if(["a","area","button","summary","img","svg"].indexOf(t)>=0)return true;if(t==="input"){var x=(el.type||"").toLowerCase();if(x==="button"||x==="submit")return true}if(el.getAttribute){if(el.getAttribute("role")==="button")return true;if(el.hasAttribute("onclick")||el.hasAttribute("data-href"))return true}try{if(getComputedStyle(el).cursor==="pointer")return true}catch(e){}return false}function fc(el){var d=0;while(el&&d<10){if(ic(el))return el;el=el.parentElement;d++}return null}function xl(el){var v;if(el.getAttribute){if((v=el.getAttribute("data-cta")))return v;if((v=el.getAttribute("aria-label")))return v;if((v=el.getAttribute("title")))return v}var t=(el.textContent||"").trim();if(t)return t.slice(0,200);if(el.value)return String(el.value).slice(0,200);var im=el.querySelector&&el.querySelector("img");if(im){var a=im.getAttribute("alt")||im.getAttribute("title");if(a)return a}if(el.getAttribute){if((v=el.getAttribute("href")))return v;if((v=el.getAttribute("data-href")))return v}return null}function oc(e){var t=fc(e.target);if(!t)return;var id=(t.id||(t.getAttribute&&t.getAttribute("data-cta-id"))||"")+"";var lb=xl(t)||"";var hr=(t.getAttribute&&(t.getAttribute("href")||t.getAttribute("data-href")))||"";var k=id+"|"+lb+"|"+hr;if(!dd(k))return;send("/api/public/click",{pageId:base.pageId,referrer:base.referrer,href:hr||base.href,path:base.path,utm_source:base.utm_source,utm_medium:base.utm_medium,utm_campaign:base.utm_campaign,cta_id:id||null,cta_label:lb||null})}document.addEventListener("pointerdown",oc,true);document.addEventListener("click",oc,true)})();
+(function(){
+  var SITE_ID="57bc3b8a-ab40-4bd8-b52a-f161cb88fd48";
+  var ENDPOINT="https://id-preview--6117c2a1-3a32-42a2-b134-b496a39164fc.lovable.app/api/public/track";
+  var SK="__pp_s_"+SITE_ID, VK="__pp_v_"+SITE_ID;
+  function uid(){try{return crypto.randomUUID();}catch(e){return String(Math.random()).slice(2)+Date.now();}}
+  function sid(){try{var r=sessionStorage.getItem(SK);if(r)return r;var s=uid();sessionStorage.setItem(SK,s);return s;}catch(e){return uid();}}
+  function vid(){try{var v=localStorage.getItem(VK);if(v)return v;var n=uid();localStorage.setItem(VK,n);return n;}catch(e){return null;}}
+  var S=sid(),V=vid(),T0=Date.now(),MAX=0;
+  var qp=new URLSearchParams(location.search);
+  function base(){return{site_id:SITE_ID,session_id:S,visitor_id:V,url:location.href,path:location.pathname,referrer:document.referrer||null,utm_source:qp.get("utm_source"),utm_medium:qp.get("utm_medium"),utm_campaign:qp.get("utm_campaign"),utm_term:qp.get("utm_term"),utm_content:qp.get("utm_content"),screen_width:window.innerWidth};}
+  function send(b){try{var p=JSON.stringify(b);if(navigator.sendBeacon){navigator.sendBeacon(ENDPOINT,new Blob([p],{type:"text/plain"}));return;}}catch(e){}try{fetch(ENDPOINT,{method:"POST",headers:{"Content-Type":"text/plain"},body:JSON.stringify(b),keepalive:true,mode:"no-cors"});}catch(e){}}
+  send(Object.assign({event_type:"pageview"},base()));
+  function upd(){var h=document.documentElement,t=window.pageYOffset||h.scrollTop,H=(h.scrollHeight||0)-window.innerHeight;if(H<=0)return;var p=Math.min(100,Math.round(t/H*100));if(p>MAX)MAX=p;}
+  window.addEventListener("scroll",upd,{passive:true});
+  document.addEventListener("click",function(e){var el=e.target;while(el&&el!==document.body){var tn=el.tagName;if(tn==="A"||tn==="BUTTON"||(el.getAttribute&&el.getAttribute("data-cta"))){var tx=(el.innerText||el.textContent||"").trim().slice(0,140);var hr=el.getAttribute&&el.getAttribute("href");var tg=el.getAttribute&&el.getAttribute("data-cta");send(Object.assign({event_type:"cta_click",cta_text:tx,cta_href:hr,cta_tag:tg},base()));return;}el=el.parentElement;}},true);
+  var sent=false;
+  function eng(){if(sent)return;sent=true;upd();send(Object.assign({event_type:"engagement",scroll_depth:MAX,time_on_page:Math.round((Date.now()-T0)/1000)},base()));}
+  document.addEventListener("visibilitychange",function(){if(document.visibilityState==="hidden")eng();});
+  window.addEventListener("pagehide",eng);
+})();
 </script>
+<!-- /PresellPulse -->
 </body>
 </html>
